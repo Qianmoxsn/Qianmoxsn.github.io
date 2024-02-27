@@ -1,0 +1,32 @@
+@import "HarmonyOS_Regular.css";
+@import "JetbrainsMono_Regular.css";
+/* 文章页背景 */
+.layout_post > #post {
+    /* 以下代表透明度为0.7 可以自行修改*/
+    background: rgba(255, 255, 255, .8);
+}
+
+/* 所有页面背景 */
+#aside_content .card-widget, #recent-posts > .recent-post-item, .layout_page > div:first-child:not(.recent-posts), .layout_post > #page, .layout_post > #post, .read-mode .layout_post > #post {
+    /* 以下代表透明度为0.7 */
+    background: rgba(255, 255, 255, .8);
+}
+
+/*侧边卡片的透明度 */
+:root {
+    --card-bg: rgba(255, 255, 255, .8);
+}
+
+#web_bg {
+    /* 背景图像的地址（url括号里）  */
+    /*background-image: url(http://storage.live.com/items/AE2D0DB2B753B780!2982:/backgroung2.jpg?authkey=%21ABv_PX3h0ivgLsI);*/
+    background-image: url(https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/backgroung2.jpg);
+    /* 背景图像不重复 */
+    background-repeat: no-repeat;
+    /* 背景图像大小 */
+    background-size: cover;
+    /*背景随滚动条滚动*/
+    background-attachment: scroll;
+    background-position: top;
+}
+

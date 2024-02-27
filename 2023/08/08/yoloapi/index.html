@@ -1,0 +1,531 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>YOLO Web API设计随笔 | Qianmoxsn的主页</title><meta name="author" content="Qianmoxsn"><meta name="copyright" content="Qianmoxsn"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="YOLO Web API设计随笔 本文Notion链接：Notion  为什么FastAPI？很显然，作为一群对yolov8尚不了解的大学生。。能够直接使用python进行detect任务对调用是一个极为便利的途径。 或者说我们其实并不清楚怎样用其他的方式使用yolo，从官方的文档中看，我们或许可以将模型转译为tensorflow.js所需的格式，从而更加从容的使用nodejs作为后端？？也许之后">
+<meta property="og:type" content="article">
+<meta property="og:title" content="YOLO Web API设计随笔">
+<meta property="og:url" content="https://blog.qianmmo.top/2023/08/08/yoloapi/index.html">
+<meta property="og:site_name" content="Qianmoxsn的主页">
+<meta property="og:description" content="YOLO Web API设计随笔 本文Notion链接：Notion  为什么FastAPI？很显然，作为一群对yolov8尚不了解的大学生。。能够直接使用python进行detect任务对调用是一个极为便利的途径。 或者说我们其实并不清楚怎样用其他的方式使用yolo，从官方的文档中看，我们或许可以将模型转译为tensorflow.js所需的格式，从而更加从容的使用nodejs作为后端？？也许之后">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://asset.qianmmo.top/cover/fastapi.png">
+<meta property="article:published_time" content="2023-08-08T12:00:00.000Z">
+<meta property="article:modified_time" content="2024-02-27T14:23:18.494Z">
+<meta property="article:author" content="Qianmoxsn">
+<meta property="article:tag" content="Yolo">
+<meta property="article:tag" content="FastAPI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://asset.qianmmo.top/cover/fastapi.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://blog.qianmmo.top/2023/08/08/yoloapi/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.12.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.32/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":470},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'YOLO Web API设计随笔',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-02-27 22:23:18'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/selfcss.css"><meta name="generator" content="Hexo 7.1.1"></head><body><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+document.addEventListener('pjax:send', () => {
+  Pace.restart()
+})
+</script><link rel="stylesheet" href="/css/center-radar.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://dsm04pap003files.storage.live.com/y4mGzUo85ZsNCIPi7C2wm8sh0yAQNRuHs0dcx535PNkgi1KQ3n2mUAo04_v69gI1Pkw7JSYZF15cmW00wkgtFVnz-voluy-7UI3wZVFtcROhp9_6A93gaa6v1o6B6qkNmHMGGmccJ1vhaLLDbofdPF-tzT81LTVLhuqev7CtUTpz5mSkqUbB48TVu5gWJ6AwAWt?width=959&amp;height=959&amp;cropmode=none" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">28</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://asset.qianmmo.top/cover/fastapi.png')"><nav id="nav"><span id="blog-info"><a href="/" title="Qianmoxsn的主页"><span class="site-name">Qianmoxsn的主页</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">YOLO Web API设计随笔</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-08-08T12:00:00.000Z" title="发表于 2023-08-08 20:00:00">2023-08-08</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-02-27T14:23:18.494Z" title="更新于 2024-02-27 22:23:18">2024-02-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Tutorial/">Tutorial</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="YOLO Web API设计随笔"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="YOLO-Web-API设计随笔"><a href="#YOLO-Web-API设计随笔" class="headerlink" title="YOLO Web API设计随笔"></a>YOLO Web API设计随笔</h1><blockquote>
+<p>本文Notion链接：<a target="_blank" rel="noopener" href="https://perpetual-anise-003.notion.site/YOLO-Web-API-d2873d42bafc4cfbaaea8e65f5235963?pvs=4">Notion</a></p>
+</blockquote>
+<h1 id="为什么FastAPI？"><a href="#为什么FastAPI？" class="headerlink" title="为什么FastAPI？"></a>为什么FastAPI？</h1><p>很显然，作为一群对yolov8尚不了解的大学生。。能够直接使用python进行detect任务对调用是一个极为便利的途径。</p>
+<p>或者说我们其实并不清楚怎样用其他的方式使用yolo，从官方的文档中看，我们或许可以将模型转译为<code>tensorflow.js</code><br>所需的格式，从而更加从容的使用<code>nodejs</code>作为后端？？也许之后会尝试</p>
+<p>至于说为什么用fastapi而不是flask，我问了chatgpt，他这么说：</p>
+<blockquote>
+<p>基于 YOLO 模型设计出供 Web 程序调用的 API，你可能会面临处理图像数据、模型推理、API 构建等多个方面的任务。根据这些需求，我会推荐使用<br>FastAPI。以下是一些原因：</p>
+<ol>
+<li><strong>异步支持：</strong> YOLO 模型的推理通常是相对耗时的任务，而 FastAPI 的异步能力可以在处理多个请求时提供更好的性能和响应时间。</li>
+<li><strong>类型提示和数据验证：</strong> YOLO 模型的输入和输出数据通常有特定的格式，使用 FastAPI<br>  的类型提示和数据验证功能可以确保请求和响应的数据格式正确，并在开发过程中就能发现问题。</li>
+<li><strong>自动文档生成：</strong> 你可以使用 FastAPI 自动生成交互式的 API 文档，其中包括请求和响应的数据模型、参数以及示例请求和响应。这对于与其他开发者合作或测试<br>  API 非常有用。</li>
+<li><strong>依赖注入和模块化：</strong> FastAPI 的依赖注入系统可以帮助你将不同的功能模块化，比如图像处理、模型推理等，使代码更易于管理和测试。</li>
+<li><strong>活跃的社区和发展：</strong> FastAPI 的社区不断壮大，你可以获得来自其他开发者的支持和贡献，以及许多现成的库和工具，以满足你的需求。</li>
+</ol>
+<p>总之，基于 YOLO 模型构建 Web API 需要考虑多个方面，FastAPI 是一个强大且适合现代异步 Web 开发的框架，可以帮助你满足这些需求。</p>
+</blockquote>
+<p>说到底，fastapi的fast真的很吸引我。（起个好名字的重要性）</p>
+<h1 id="那就开始吧"><a href="#那就开始吧" class="headerlink" title="那就开始吧"></a>那就开始吧</h1><p>首先来看看我希望这个api去做些什么</p>
+<p>在上个期末完成了对模型的训练后，已经通过Gradio完成了一个简单的ui实现</p>
+<p><img src="https://www.cnsportiot.com/tutorial/yoloapi/Untitled.png" alt="Untitled"></p>
+<p>那么这个方案有什么问题吗？</p>
+<p>有，太慢了！</p>
+<p>这种慢并不是模型运行的耗时而是在一个垃圾云服务器上因为带宽限制导致的。没错，gradio给我们的输入和输出方式定义为了图片，也就是我们要把这张图来回上传下载两次，这无疑使愚蠢的。</p>
+<p><img src="https://www.cnsportiot.com/tutorial/yoloapi/Untitled%201.png" alt="一种我理解中（我以为）的工作方式"></p>
+<p>一种我理解中（我以为）的工作方式</p>
+<p>众所周知<br>webui可是跑在浏览器上的，如果我们把绘制边框的操作交给浏览器（本地）进行，服务器只是回传一段表示位置的数据，那是不是我们就节省了回传一张图片的时间~~<br>（获得50%的性能提升）~~</p>
+<p><img src="https://www.cnsportiot.com/tutorial/yoloapi/Untitled%202.png" alt="另一种我理解中（我以为）的工作方式"></p>
+<p>另一种我理解中（我以为）的工作方式</p>
+<hr>
+<h2 id="从yolo中获取我们所需要的坐标数据"><a href="#从yolo中获取我们所需要的坐标数据" class="headerlink" title="从yolo中获取我们所需要的坐标数据"></a>从yolo中获取我们所需要的坐标数据</h2><p>关于坐标数据我们一开始就知道是存在的（废话），也就是save进txt里的那些。但问题是yolov8封装的实在是太好了，他的默认方式居然就是返回图片。好在yolo项目组在假期这几个月里面确确实实有在更新项目，特别是文档，终于变的能看了。现在他们居然写出了整整一页的predict方法解析！！</p>
+<p><a target="_blank" rel="noopener" href="https://docs.ultralytics.com/modes/predict/">Predict</a></p>
+<p>在**<a target="_blank" rel="noopener" href="https://docs.ultralytics.com/modes/predict/#working-with-results">Working with Results</a><br>一节中，我们终于看到了result的真实面目：一个对象（）**</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>orig_img</td>
+<td>numpy.ndarray</td>
+<td>The original image as a numpy array.</td>
+</tr>
+<tr>
+<td>orig_shape</td>
+<td>tuple</td>
+<td>The original image shape in (height, width) format.</td>
+</tr>
+<tr>
+<td>boxes</td>
+<td>Boxes, optional</td>
+<td>A Boxes object containing the detection bounding boxes.</td>
+</tr>
+<tr>
+<td>masks</td>
+<td>Masks, optional</td>
+<td>A Masks object containing the detection masks.</td>
+</tr>
+<tr>
+<td>probs</td>
+<td>Probs, optional</td>
+<td>A Probs object containing probabilities of each class for classification task.</td>
+</tr>
+<tr>
+<td>keypoints</td>
+<td>Keypoints, optional</td>
+<td>A Keypoints object containing detected keypoints for each object.</td>
+</tr>
+<tr>
+<td>speed</td>
+<td>dict</td>
+<td>A dictionary of preprocess, inference, and postprocess speeds in milliseconds per image.</td>
+</tr>
+<tr>
+<td>names</td>
+<td>dict</td>
+<td>A dictionary of class names.</td>
+</tr>
+<tr>
+<td>path</td>
+<td>str</td>
+<td>The path to the image file.</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>orig_img</td>
+<td>numpy.ndarray</td>
+<td>原始图像的numpy数组。</td>
+</tr>
+<tr>
+<td>orig_shape</td>
+<td>tuple</td>
+<td>以（高度，宽度）格式表示的原始图像形状。</td>
+</tr>
+<tr>
+<td>boxes</td>
+<td>Boxes, 可选</td>
+<td>包含检测边界框的Boxes对象。</td>
+</tr>
+<tr>
+<td>masks</td>
+<td>Masks, 可选</td>
+<td>包含检测掩码的Masks对象。</td>
+</tr>
+<tr>
+<td>probs</td>
+<td>Probs, 可选</td>
+<td>包含每个类别的概率的Probs对象，用于分类任务。</td>
+</tr>
+<tr>
+<td>keypoints</td>
+<td>Keypoints, 可选</td>
+<td>包含每个对象检测到的关键点的Keypoints对象。</td>
+</tr>
+<tr>
+<td>speed</td>
+<td>dict</td>
+<td>每张图像的预处理、推理和后处理速度的毫秒字典。</td>
+</tr>
+<tr>
+<td>names</td>
+<td>dict</td>
+<td>类名的字典。</td>
+</tr>
+<tr>
+<td>path</td>
+<td>str</td>
+<td>图像文件的路径。</td>
+</tr>
+</tbody></table>
+<p>注意这个<code>numpy.ndarray</code> 我们可以理解为这个就是图片在python中的多维数组形式</p>
+<p>再回来看我们常用的plot命令：</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Return Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>plot()</td>
+<td>numpy.ndarray</td>
+<td>Plots the detection results. Returns a numpy array of the annotated image.</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>返回类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>plot()</td>
+<td>numpy.ndarray</td>
+<td>绘制检测结果。返回一个带注释的图像的 numpy 数组。</td>
+</tr>
+</tbody></table>
+<p>是不是一切都解释的通了</p>
+<hr>
+<p>综上，我们只需要从result对象中提取出我们所需要的信息发送给前端，忽略掉冗长的<code>ndarray</code> 就实现我们前面提到的目标了。</p>
+<p>还有一个好消息，除了plot，yolo也提供了另一个方法：</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Return Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>tojson()</td>
+<td>None</td>
+<td>Convert the object to JSON format.</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>返回类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>tojson()</td>
+<td>无</td>
+<td>将对象转换为 JSON 格式。</td>
+</tr>
+</tbody></table>
+<p>我们来看一下效果</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> ultralytics <span class="keyword">import</span> YOLO</span><br><span class="line"></span><br><span class="line">ROOT = <span class="string">&#x27;D:/Code/ultralytics&#x27;</span></span><br><span class="line"><span class="comment"># Load a model</span></span><br><span class="line">model = YOLO(ROOT + <span class="string">&#x27;/ultralytics/trainresult/v8_170best.pt&#x27;</span>)  <span class="comment"># pretrained YOLOv8n model</span></span><br><span class="line">testimgset = [</span><br><span class="line">    <span class="string">&#x27;images/cube1.jpg&#x27;</span>,</span><br><span class="line">]</span><br><span class="line"><span class="comment"># Run batched inference on a list of images</span></span><br><span class="line">results = model.predict(testimgset)  <span class="comment"># return a generator of Results objects</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Process results generator</span></span><br><span class="line"><span class="keyword">for</span> result <span class="keyword">in</span> results:</span><br><span class="line">    result_tojson = result.tojson()</span><br><span class="line">    <span class="built_in">print</span>(result_tojson)</span><br></pre></td></tr></table></figure>
+
+<p>JSON:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">[</span></span><br><span class="line">  <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;cube&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;class&quot;</span><span class="punctuation">:</span> <span class="number">1</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;confidence&quot;</span><span class="punctuation">:</span> <span class="number">0.7532966136932373</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;box&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;x1&quot;</span><span class="punctuation">:</span> <span class="number">85.58421325683594</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;y1&quot;</span><span class="punctuation">:</span> <span class="number">220.336669921875</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;x2&quot;</span><span class="punctuation">:</span> <span class="number">379.03240966796875</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;y2&quot;</span><span class="punctuation">:</span> <span class="number">566.9713134765625</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">]</span></span><br></pre></td></tr></table></figure>
+
+<p>刚刚好，我们需要的信息都有了，接下来我们要做的就是把这些信息发给我们的浏览器</p>
+<hr>
+<h1 id="尝试把JSON信息发送给前端"><a href="#尝试把JSON信息发送给前端" class="headerlink" title="尝试把JSON信息发送给前端"></a>尝试把JSON信息发送给前端</h1><h2 id="编写API"><a href="#编写API" class="headerlink" title="编写API"></a>编写API</h2><p>我们以最简单的形式入手，当我们访问到某个特定的节点时，我们显示出上面提到的json数据</p>
+<p>也就是我们通过浏览器访<a target="_blank" rel="noopener" href="http://127.0.0.1:8000/detect_results/"><code>http://127.0.0.1:8000/detect_results/</code></a>时，获取到上面提到的json信息。</p>
+<p>为了处理这个请求[1]，需要在FastAPI应用中创建一个<code>路由</code>[2]，使用 <code>@app.get()</code> 装饰器，从而定义一个处理 <code>GET</code> 请求的API端点。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 修改路由定义，使用 @app.get()</span></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/detect_results/&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">detect_results</span>():</span><br><span class="line">    results = run_inference(testimgset)  <span class="comment"># Run inference on test images</span></span><br><span class="line">    <span class="keyword">return</span> JSONResponse(content=results)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>[3]</p>
+<p>这样，当你在浏览器中访问<code>http://127.0.0.1:8000/detect_results/</code> 时，FastAPI应用将会处理 <code>GET</code> 请求，并将响应的 JSON<br>信息返回给浏览器。可以在浏览器中看到 JSON 数据。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;[\n  &#123;\n    \&quot;name\&quot;: \&quot;cube\&quot;,\n    \&quot;class\&quot;: 1,\n    \&quot;confidence\&quot;: 0.7532966136932373,\n    \&quot;box\&quot;: &#123;\n      \&quot;x1\&quot;: 85.58421325683594,\n      \&quot;y1\&quot;: 220.336669921875,\n      \&quot;x2\&quot;: 379.03240966796875,\n      \&quot;y2\&quot;: 566.9713134765625\n    &#125;\n  &#125;\n]&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="对上面的一点解释"><a href="#对上面的一点解释" class="headerlink" title="对上面的一点解释"></a>对上面的一点解释</h2><ol>
+<li><p>浏览器访问网址的原理是使用 <code>GET</code> 请求来获取网页内容，所以我们需要编写一个处理<code>GET</code>请求的API</p>
+</li>
+<li><p>在Web开发中，路由（Route）是一种将URL与特定功能或处理程序相关联的机制。它指定了在访问特定URL时应该执行的代码块或处理逻辑。路由充当了Web应用中不同页面、功能或操作之间的映射关系。每个URL路径都对应一个特定的路由，当访问该URL时，路由会调用与之相关联的处理程序或功能。</p>
+</li>
+<li><p>这段代码包含以下几个步骤</p>
+<ul>
+<li><strong>步骤 1：导入 <code>FastAPI</code></strong></li>
+</ul>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> FastAPI</span><br></pre></td></tr></table></figure>
+
+<p><code>FastAPI</code> 是一个为你的 API 提供了所有功能的 Python 类。</p>
+<ul>
+<li><strong>步骤 2：创建一个 <code>FastAPI</code>「实例」</strong></li>
+</ul>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app = FastAPI()</span><br></pre></td></tr></table></figure>
+
+<p>这里的变量 <code>app</code> 会是 <code>FastAPI</code> 类的一个「实例」。</p>
+<p>这个实例将是创建你所有 API 的主要交互对象。</p>
+<p>这个 <code>app</code> 同样在如下命令中被 <code>uvicorn</code> 所引用：</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uvicorn main:app --reload</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>步骤 3：创建一个<em>路径(路由)操作</em></strong></li>
+</ul>
+<p><strong>路径</strong></p>
+<p>这里的<code>「路径」</code>指的是 URL 中从第一个 <code>/</code> 起的后半部分。</p>
+<p>所以，在一个这样的 URL 中<code>https://example.com/items/foo</code>路径会是：<code>/items/foo</code></p>
+<p><strong>操作</strong></p>
+<p>这里的<code>「操作」</code>指的是一种 HTTP「方法」。下列之一：<code>POST</code>、<code>GET</code>、<code>PUT</code>、<code>DELETE</code></p>
+<p>…以及更少见的几种：<code>OPTIONS</code>、<code>HEAD</code>、<code>PATCH</code>、<code>TRACE</code></p>
+<blockquote>
+<p>在开发 API 时，你通常使用特定的 HTTP 方法去执行特定的行为。</p>
+<p>通常使用：</p>
+<ul>
+<li><code>POST</code>：创建数据。</li>
+<li><code>GET</code>：读取数据。</li>
+<li><code>PUT</code>：更新数据。</li>
+<li><code>DELETE</code>：删除数据。</li>
+</ul>
+</blockquote>
+<p><strong>定义路径操作装饰器</strong></p>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/&quot;</span></span>)</span></span><br></pre></td></tr></table></figure>
+
+<p><code>@app.get(&quot;/&quot;)</code> 告诉 <strong>FastAPI</strong> 在它下方的函数负责处理如下访问请求：</p>
+<ul>
+<li>请求路径为 <code>/</code></li>
+<li>使用<code>get</code> 操作</li>
+</ul>
+<blockquote>
+<p><code>@something</code> 语法在 Python<br>中被称为「装饰器」。像一顶漂亮的装饰帽一样，将它放在一个函数的上方（我猜测这个术语的命名就是这么来的）。装饰器接收位于其下方的函数并且用它完成一些工作。在我们的例子中，这个装饰器告诉<br><strong>FastAPI</strong> 位于其下方的函数对应着<strong>路径</strong> <code>/</code> 加上 <code>get</code> <strong>操作</strong>。它是一个「<strong>路径操作装饰器</strong>」。</p>
+</blockquote>
+<ul>
+<li><strong>步骤 4：定义路径操作函数</strong></li>
+</ul>
+<p>这是一个 Python 函数。每当 <strong>FastAPI</strong> 接收一个使用 <code>GET</code> 方法访问 URL「<code>/</code>」的请求时这个函数会被调用。</p>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">root</span>():</span><br><span class="line">	<span class="keyword">return</span> &#123;<span class="string">&quot;message&quot;</span>: <span class="string">&quot;Hello World&quot;</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>关于是否使用异步函数参考：</p>
+<p><a target="_blank" rel="noopener" href="https://fastapi.tiangolo.com/async/#in-a-hurry">Concurrency and async &#x2F; await - FastAPI</a></p>
+</blockquote>
+<ul>
+<li><strong>步骤 5：返回内容</strong></li>
+</ul>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">root</span>():</span><br><span class="line">	<span class="keyword">return</span> &#123;<span class="string">&quot;message&quot;</span>: <span class="string">&quot;Hello World&quot;</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>💡 待补充</p>
+</li>
+</ol>
+<h2 id="引入参数"><a href="#引入参数" class="headerlink" title="引入参数"></a>引入参数</h2><p>在上面的例子里，我们将图片的路径写死了（存储在服务器的变量中）这显然是不合理的，毕竟我们不希望我们的API只能识别一张图片。</p>
+<p><strong>路径参数</strong></p>
+<p>可以使用与 Python 格式化字符串相同的语法来声明路径”参数”或”变量”：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/items/&#123;item_id&#125;&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">read_item</span>(<span class="params">item_id</span>):</span><br><span class="line">	<span class="keyword">return</span> &#123;<span class="string">&quot;item_id&quot;</span>: item_id&#125;</span><br></pre></td></tr></table></figure>
+
+<p>不难理解，就是在路径中生命了函数的参数</p>
+<p><strong>有类型的路径参数</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/items/&#123;item_id&#125;&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">read_item</span>(<span class="params">item_id: <span class="built_in">int</span></span>):</span><br><span class="line"><span class="keyword">return</span> &#123;<span class="string">&quot;item_id&quot;</span>: item_id&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，<code>item_id</code> 被声明为 <code>int</code> 类型。</p>
+<p><strong>设定合法路径值（枚举）</strong></p>
+<p><a target="_blank" rel="noopener" href="https://fastapi.tiangolo.com/zh/tutorial/path-params/#_8">路径参数 - FastAPI</a></p>
+<p><strong>查询参数</strong></p>
+<p>声明不属于路径参数的其他函数参数时，它们将被自动解释为”查询字符串”参数</p>
+<p><a target="_blank" rel="noopener" href="https://fastapi.tiangolo.com/zh/tutorial/query-params/">查询参数 - FastAPI</a></p>
+<hr>
+<h1 id="搓一个简单的前端页面"><a href="#搓一个简单的前端页面" class="headerlink" title="搓一个简单的前端页面"></a>搓一个简单的前端页面</h1><p>我们直接告诉chatgpt：模仿gradio框架的样式，生成一个图像识别的前端页面，要求包含标题栏，二级标题栏，图像输入上传与展示区，图像结果生成区，置信度调节条，日志输出区</p>
+<p>接着，我们稍加整理，就得到了这些</p>
+<ul>
+<li>index.html</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!doctype <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>图像识别前端页面<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;style.css&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;header&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>图像识别前端页面<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;sub-header&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span>图像上传与展示<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;image-upload&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span> <span class="attr">id</span>=<span class="string">&quot;imageInput&quot;</span> <span class="attr">accept</span>=<span class="string">&quot;image/*&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;image-display&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">&quot;uploadedImage&quot;</span> <span class="attr">src</span>=<span class="string">&quot;#&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;Uploaded Image&quot;</span> <span class="attr">style</span>=<span class="string">&quot;max-width: 100%&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;sub-header&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span>图像结果与绘制<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;result-area&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">h3</span>&gt;</span>识别结果:<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;image-display&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">&quot;resultImage&quot;</span> <span class="attr">src</span>=<span class="string">&quot;#&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;Result Image&quot;</span> <span class="attr">style</span>=<span class="string">&quot;max-width: 100%&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">&quot;boundingCanvas&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;sub-header&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span>置信度调节<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;range&quot;</span> <span class="attr">id</span>=<span class="string">&quot;confidenceSlider&quot;</span> <span class="attr">class</span>=<span class="string">&quot;confidence-slider&quot;</span> <span class="attr">min</span>=<span class="string">&quot;0&quot;</span> <span class="attr">max</span>=<span class="string">&quot;100&quot;</span> <span class="attr">value</span>=<span class="string">&quot;50&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;sub-header&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span>日志输出<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;log-area&quot;</span> <span class="attr">id</span>=<span class="string">&quot;logOutput&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- JavaScript 代码 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;main.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>style.css</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 样式设置 */</span></span><br><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">font-family</span>: Arial, sans-serif;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.header</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#333</span>;</span><br><span class="line">  <span class="attribute">color</span>: white;</span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.sub-header</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#555</span>;</span><br><span class="line">  <span class="attribute">color</span>: white;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">5px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">max-width</span>: <span class="number">800px</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span> auto;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">20px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.image-upload</span> &#123;</span><br><span class="line">  <span class="attribute">margin-bottom</span>: <span class="number">20px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.image-display</span> &#123;</span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line">  <span class="attribute">margin-bottom</span>: <span class="number">20px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.result-area</span> &#123;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#ccc</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">margin-bottom</span>: <span class="number">20px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.confidence-slider</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">margin-bottom</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.log-area</span> &#123;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#ccc</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#f5f5f5</span>;</span><br><span class="line">  <span class="attribute">max-height</span>: <span class="number">150px</span>;</span><br><span class="line">  <span class="attribute">overflow</span>: auto;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#boundingCanvas</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="comment">/* 绝对定位，使canvas元素覆盖在img元素上方 */</span></span><br><span class="line">  <span class="comment">/* 防止canvas元素干扰鼠标事件 */</span></span><br><span class="line">  <span class="comment">/* pointer-events: none; */</span></span><br><span class="line">  <span class="attribute">z-index</span>: <span class="number">1</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">2px</span> solid <span class="built_in">rgb</span>(<span class="number">223</span>, <span class="number">124</span>, <span class="number">37</span>);</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>main.js</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> imageInput = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;imageInput&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> uploadedImage = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;uploadedImage&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> resultImage = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;resultImage&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> boundingCanvas = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;boundingCanvas&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> bounding = &#123; <span class="attr">x</span>: <span class="number">100</span>, <span class="attr">y</span>: <span class="number">200</span>, <span class="attr">width</span>: <span class="number">180</span>, <span class="attr">height</span>: <span class="number">200</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在窗口大小变化时更新canvas位置</span></span><br><span class="line"><span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&quot;resize&quot;</span>, <span class="title function_">updateWithDraw</span>(bounding));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 初始加载时调用一次</span></span><br><span class="line"><span class="title function_">updateCanvasPosition</span>();</span><br><span class="line"></span><br><span class="line">imageInput.<span class="title function_">addEventListener</span>(<span class="string">&quot;change&quot;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> file = imageInput.<span class="property">files</span>[<span class="number">0</span>];</span><br><span class="line">  <span class="keyword">if</span> (file) &#123;</span><br><span class="line">    <span class="keyword">const</span> reader = <span class="keyword">new</span> <span class="title class_">FileReader</span>();</span><br><span class="line">    reader.<span class="property">onload</span> = <span class="keyword">function</span> (<span class="params">e</span>) &#123;</span><br><span class="line">      uploadedImage.<span class="property">src</span> = e.<span class="property">target</span>.<span class="property">result</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">    reader.<span class="title function_">readAsDataURL</span>(file);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Simulate recognition result</span></span><br><span class="line">    <span class="comment">// You would need to replace this with actual logic</span></span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      resultImage.<span class="property">src</span> = uploadedImage.<span class="property">src</span>;</span><br><span class="line"></span><br><span class="line">      resultImage.<span class="property">onload</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">        <span class="title function_">updateWithDraw</span>(bounding);</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;, <span class="number">500</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 绘制bounding box</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">drawBoundingBox</span>(<span class="params">bounding</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> canvasContext = boundingCanvas.<span class="title function_">getContext</span>(<span class="string">&quot;2d&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 设置绘制样式</span></span><br><span class="line">  canvasContext.<span class="property">strokeStyle</span> = <span class="string">&quot;red&quot;</span>;</span><br><span class="line">  canvasContext.<span class="property">lineWidth</span> = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 绘制bounding box</span></span><br><span class="line">  canvasContext.<span class="title function_">beginPath</span>();</span><br><span class="line">  canvasContext.<span class="title function_">rect</span>(bounding.<span class="property">x</span>, bounding.<span class="property">y</span>, bounding.<span class="property">width</span>, bounding.<span class="property">height</span>);</span><br><span class="line">  canvasContext.<span class="title function_">stroke</span>();</span><br><span class="line">  canvasContext.<span class="title function_">closePath</span>();</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(bounding);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//清除Canvas</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">clearCanvas</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> canvasContext = boundingCanvas.<span class="title function_">getContext</span>(<span class="string">&quot;2d&quot;</span>);</span><br><span class="line">  canvasContext.<span class="title function_">clearRect</span>(<span class="number">0</span>, <span class="number">0</span>, boundingCanvas.<span class="property">width</span>, boundingCanvas.<span class="property">height</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 更新canvas位置函数</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">updateCanvasPosition</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> resultImageRect = resultImage.<span class="title function_">getBoundingClientRect</span>();</span><br><span class="line">  <span class="keyword">const</span> scrollTop = <span class="variable language_">document</span>.<span class="property">documentElement</span>.<span class="property">scrollTop</span>;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(resultImageRect);</span><br><span class="line">  boundingCanvas.<span class="property">style</span>.<span class="property">position</span> = <span class="string">&quot;absolute&quot;</span>;</span><br><span class="line">  boundingCanvas.<span class="property">style</span>.<span class="property">left</span> = resultImageRect.<span class="property">left</span> + <span class="string">&quot;px&quot;</span>;</span><br><span class="line">  boundingCanvas.<span class="property">style</span>.<span class="property">top</span> = resultImageRect.<span class="property">top</span> + scrollTop + <span class="string">&quot;px&quot;</span>;</span><br><span class="line">  boundingCanvas.<span class="property">width</span> = resultImageRect.<span class="property">width</span>;</span><br><span class="line">  boundingCanvas.<span class="property">height</span> = resultImageRect.<span class="property">height</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">updateWithDraw</span>(<span class="params">bounding</span>) &#123;</span><br><span class="line">  <span class="title function_">updateCanvasPosition</span>();</span><br><span class="line">  <span class="title function_">drawBoundingBox</span>(bounding);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这边采用了canvas来绘制图像的表示框，为了将canvas覆盖到输出图片上，我们在css中声明定位为绝对位置，z轴层级为1（保持在最上层）并且定义了一个更新canvas位置的函数来响应图片尺寸的变化和窗口可能存在的缩放。</p>
+<p>现在我们只需要将绘制的坐标更新为实际的位置，并且将触发绘制函数更改为接收到结果时触发即可完成真正的识别展示逻辑。</p>
+<hr>
+<p>页面大概长这个样子，使用npm+vite构建，如果你搞到了我这份代码你应该这样运行：</p>
+<p>首先来到vite的目录下（长这样）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">---xxx/xxx/vite</span><br><span class="line"> |-public</span><br><span class="line"> |-index.html</span><br><span class="line"> |-main.js</span><br><span class="line"> |-style.css</span><br><span class="line"> |-package.json</span><br></pre></td></tr></table></figure>
+
+<p>然后打开Terminal，输入 <code>npm i</code> 安装依赖包（前提是你装好了node.js(和npm npm正常情况下随node一同安装)）之后会看到出现了一个<code>node_modules</code>文件夹，这就是依赖包</p>
+<p>之后可以使用 <code>npm run dev</code> 来开启开发服务器，这个具体的执行命令会参照<code>package.json</code>中<code>&quot;scripts&quot;</code>的部分。正常情况下dev命令只调用 <code>vite</code>，我添加了<code>—host</code>参数来进行局域网内的访问（而不是localhost）。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;dev&quot;</span><span class="punctuation">:</span> <span class="string">&quot;vite --host&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;build&quot;</span><span class="punctuation">:</span> <span class="string">&quot;vite build&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;preview&quot;</span><span class="punctuation">:</span> <span class="string">&quot;vite preview&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>之后就可以在默认端口5173看到部署的网页了</strong></p>
+<p><img src="https://www.cnsportiot.com/tutorial/yoloapi/Untitled%203.png" alt="Untitled"></p>
+<p><strong>绘制框的效果如下</strong></p>
+<p><img src="https://www.cnsportiot.com/tutorial/yoloapi/Untitled%204.png" alt="Untitled"></p>
+<hr>
+<h1 id="把图片传给存储服务器"><a href="#把图片传给存储服务器" class="headerlink" title="把图片传给存储服务器"></a>把图片传给存储服务器</h1><p>考虑到图像的采集基本上是由单片机（esp32）编码发送，我们暂且使用js在前端模拟（也就是上面提到的上传功能）以mqtt协议发送jepg图片到服务器。</p>
+<p>对于MQTT服务器（broker）的选择，这里采用EMQX开源方案作为MQTT代理服务器（MQTT Broker），当然也可以使用MQTT.js自行构建一个server。</p>
+<ul>
+<li>关于EMQX：</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://www.emqx.io/docs/zh/v5.1/">产品概览</a></p>
+<h2 id="MQTT通信架构"><a href="#MQTT通信架构" class="headerlink" title="MQTT通信架构"></a>MQTT通信架构</h2><p>我们先了解一下MQTT，MQTT采用一种发布-订阅的模式进行通信，具体的示意可看下图：</p>
+<p><img src="https://www.cnsportiot.com/tutorial/yoloapi/Untitled%205.png" alt="Untitled"></p>
+<hr>
+<p>让我们通过对 <code>mqtt.js</code> 的操作来解释这些概念。</p>
+<p>首先，在作为发布者（publisher）客户端时，最主要的操作就是发布主题。这可以通过以下方法实现：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">publish</span>(<span class="attr">topic</span>: string, <span class="attr">message</span>: string | <span class="title class_">Buffer</span>, callback?: <span class="title class_">DoneCallback</span>): <span class="title class_">MqttClient</span>;</span><br></pre></td></tr></table></figure>
+
+<p>从这个方法中，我们可以明确需要提供两个参数。一个是待发布的主题，另一个则是要发布的内容。这个过程就类似于我们在群聊中发送消息，我们需要知道要发送到 <code>哪个群</code> 以及要 <code>发送什么内容</code>。</p>
+<p>同时，在消息的接收端，也就是订阅者（subscriber）客户端，主要的操作是订阅主题。这可以通过以下方法完成：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">subscribe</span>(<span class="attr">topicObject</span>: string | string[] | <span class="title class_">ISubscriptionMap</span>, callback?: <span class="title class_">ClientSubscribeCallback</span>): <span class="title class_">MqttClient</span>;</span><br></pre></td></tr></table></figure>
+
+<p>随后，您将能够接收到与所订阅主题相关的消息。通过使用<code>.on</code> 方法监听 <code>message</code> 事件，您可以进一步对接收到的负载（消息内容）进行操作（回调函数）。</p>
+<p>我们会在后面的内容中详细说明<code>mqtt.js</code> 的具体操作</p>
+<h2 id="MQTT-Broker搭建"><a href="#MQTT-Broker搭建" class="headerlink" title="MQTT Broker搭建"></a>MQTT Broker搭建</h2><p>参考官方文档：</p>
+<p><a target="_blank" rel="noopener" href="https://www.emqx.io/docs/zh/v5.1/deploy/install-docker.html">Docker 部署指南</a></p>
+<p>既然官方推荐我们使用docker进行部署那就不妨试试，顺便练一下docker怎么用</p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV14s4y1i7Vf/?spm_id_from=333.337.search-card.all.click&vd_source=7b22d3d988c13bb267c33aa213f757f3">【GeekHour】30分钟Docker入门教程_哔哩哔哩_bilibili</a></p>
+<hr>
+<p>部署成功后，将端口映射到物理机相同端口，访问 <code>localhost:18083</code>进入默认管理界面</p>
+<h2 id="MQTT-客户端-Publisher-编写"><a href="#MQTT-客户端-Publisher-编写" class="headerlink" title="MQTT 客户端(Publisher)编写"></a>MQTT 客户端(Publisher)编写</h2><p>我们暂时使用javascript来代替硬件作为发布端</p>
+<p>使用库：<code>MQTT.js</code></p>
+<p><a target="_blank" rel="noopener" href="https://www.emqx.com/zh/blog/mqtt-js-tutorial">MQTT.js 入门教程</a></p>
+<hr>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://blog.qianmmo.top">Qianmoxsn</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://blog.qianmmo.top/2023/08/08/yoloapi/">https://blog.qianmmo.top/2023/08/08/yoloapi/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://blog.qianmmo.top" target="_blank">Qianmoxsn的主页</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Yolo/">Yolo</a><a class="post-meta__tags" href="/tags/FastAPI/">FastAPI</a></div><div class="post_share"><div class="social-share" data-image="https://asset.qianmmo.top/cover/fastapi.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/09/14/ssh/" title="SSH 详解"><img class="cover" src="https://asset.qianmmo.top/cover/ssh.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">SSH 详解</div></div></a></div><div class="next-post pull-right"><a href="/2023/07/17/GitHubtutorial/" title="Git/Github 快速入门"><img class="cover" src="https://asset.qianmmo.top/cover/git.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Git/Github 快速入门</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://dsm04pap003files.storage.live.com/y4mGzUo85ZsNCIPi7C2wm8sh0yAQNRuHs0dcx535PNkgi1KQ3n2mUAo04_v69gI1Pkw7JSYZF15cmW00wkgtFVnz-voluy-7UI3wZVFtcROhp9_6A93gaa6v1o6B6qkNmHMGGmccJ1vhaLLDbofdPF-tzT81LTVLhuqev7CtUTpz5mSkqUbB48TVu5gWJ6AwAWt?width=959&amp;height=959&amp;cropmode=none" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Qianmoxsn</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">28</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Qianmoxsn"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">CV一时爽，期末火葬场</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#YOLO-Web-API%E8%AE%BE%E8%AE%A1%E9%9A%8F%E7%AC%94"><span class="toc-number">1.</span> <span class="toc-text">YOLO Web API设计随笔</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88FastAPI%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">为什么FastAPI？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%82%A3%E5%B0%B1%E5%BC%80%E5%A7%8B%E5%90%A7"><span class="toc-number">3.</span> <span class="toc-text">那就开始吧</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8Eyolo%E4%B8%AD%E8%8E%B7%E5%8F%96%E6%88%91%E4%BB%AC%E6%89%80%E9%9C%80%E8%A6%81%E7%9A%84%E5%9D%90%E6%A0%87%E6%95%B0%E6%8D%AE"><span class="toc-number">3.1.</span> <span class="toc-text">从yolo中获取我们所需要的坐标数据</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%9D%E8%AF%95%E6%8A%8AJSON%E4%BF%A1%E6%81%AF%E5%8F%91%E9%80%81%E7%BB%99%E5%89%8D%E7%AB%AF"><span class="toc-number">4.</span> <span class="toc-text">尝试把JSON信息发送给前端</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E5%86%99API"><span class="toc-number">4.1.</span> <span class="toc-text">编写API</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E4%B8%8A%E9%9D%A2%E7%9A%84%E4%B8%80%E7%82%B9%E8%A7%A3%E9%87%8A"><span class="toc-number">4.2.</span> <span class="toc-text">对上面的一点解释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E5%85%A5%E5%8F%82%E6%95%B0"><span class="toc-number">4.3.</span> <span class="toc-text">引入参数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%90%93%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%89%8D%E7%AB%AF%E9%A1%B5%E9%9D%A2"><span class="toc-number">5.</span> <span class="toc-text">搓一个简单的前端页面</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8A%8A%E5%9B%BE%E7%89%87%E4%BC%A0%E7%BB%99%E5%AD%98%E5%82%A8%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">6.</span> <span class="toc-text">把图片传给存储服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#MQTT%E9%80%9A%E4%BF%A1%E6%9E%B6%E6%9E%84"><span class="toc-number">6.1.</span> <span class="toc-text">MQTT通信架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MQTT-Broker%E6%90%AD%E5%BB%BA"><span class="toc-number">6.2.</span> <span class="toc-text">MQTT Broker搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MQTT-%E5%AE%A2%E6%88%B7%E7%AB%AF-Publisher-%E7%BC%96%E5%86%99"><span class="toc-number">6.3.</span> <span class="toc-text">MQTT 客户端(Publisher)编写</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/26/bupt32/" title="Course Schedule">Course Schedule</a><time datetime="2024-02-26T02:00:00.000Z" title="发表于 2024-02-26 10:00:00">2024-02-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/13/MatrixDeploymentonDocker/" title="在Ubuntu 22.04上使用Docker部署Matrix服务"><img src="https://asset.qianmmo.top/cover/matrix.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="在Ubuntu 22.04上使用Docker部署Matrix服务"/></a><div class="content"><a class="title" href="/2024/02/13/MatrixDeploymentonDocker/" title="在Ubuntu 22.04上使用Docker部署Matrix服务">在Ubuntu 22.04上使用Docker部署Matrix服务</a><time datetime="2024-02-13T12:00:00.000Z" title="发表于 2024-02-13 20:00:00">2024-02-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/13/NginxConfig/" title="Nginx服务器配置指南"><img src="https://asset.qianmmo.top/cover/nginx.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Nginx服务器配置指南"/></a><div class="content"><a class="title" href="/2024/02/13/NginxConfig/" title="Nginx服务器配置指南">Nginx服务器配置指南</a><time datetime="2024-02-13T05:00:00.000Z" title="发表于 2024-02-13 13:00:00">2024-02-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/13/NginxInstallation/" title="Nginx服务器安装指南"><img src="https://asset.qianmmo.top/cover/nginx.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Nginx服务器安装指南"/></a><div class="content"><a class="title" href="/2024/02/13/NginxInstallation/" title="Nginx服务器安装指南">Nginx服务器安装指南</a><time datetime="2024-02-13T04:00:00.000Z" title="发表于 2024-02-13 12:00:00">2024-02-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/11/cors/" title="CORS-跨源资源共享"><img src="https://asset.qianmmo.top/cover/cors.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CORS-跨源资源共享"/></a><div class="content"><a class="title" href="/2024/02/11/cors/" title="CORS-跨源资源共享">CORS-跨源资源共享</a><time datetime="2024-02-11T07:00:00.000Z" title="发表于 2024-02-11 15:00:00">2024-02-11</time></div></div></div></div></div></div></main><footer id="footer" style="background: #758d664d"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2024 By Qianmoxsn</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="icp"><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/"><span>京ICP备2024047404号-1</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.12.0"></script><script src="/js/main.js?v=4.12.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.32/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

@@ -1,0 +1,261 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>A-Frame 快速入门 | Qianmoxsn的主页</title><meta name="author" content="Qianmoxsn"><meta name="copyright" content="Qianmoxsn"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="A-Frame 快速入门 本篇基于A-Frame官方文档1.4.0编写。官方文档跳转  环境搭建1. 使用node+vite建立可热重载的开发环境创建vite项目，详见 搭建第一个 Vite 项目 1npm create vite@latest  进入项目内安装依赖(package.json) 1npm install  2. 使用cdn引入aframe.js在index.html中引入afram">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A-Frame 快速入门">
+<meta property="og:url" content="https://blog.qianmmo.top/2023/07/12/aframe/index.html">
+<meta property="og:site_name" content="Qianmoxsn的主页">
+<meta property="og:description" content="A-Frame 快速入门 本篇基于A-Frame官方文档1.4.0编写。官方文档跳转  环境搭建1. 使用node+vite建立可热重载的开发环境创建vite项目，详见 搭建第一个 Vite 项目 1npm create vite@latest  进入项目内安装依赖(package.json) 1npm install  2. 使用cdn引入aframe.js在index.html中引入afram">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://asset.qianmmo.top/cover/aframe.png">
+<meta property="article:published_time" content="2023-07-12T12:00:00.000Z">
+<meta property="article:modified_time" content="2024-02-27T14:23:18.491Z">
+<meta property="article:author" content="Qianmoxsn">
+<meta property="article:tag" content="aframe">
+<meta property="article:tag" content="web3D">
+<meta property="article:tag" content="Tutorial">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://asset.qianmmo.top/cover/aframe.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://blog.qianmmo.top/2023/07/12/aframe/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.12.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.32/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":470},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'A-Frame 快速入门',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-02-27 22:23:18'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/selfcss.css"><meta name="generator" content="Hexo 7.1.1"></head><body><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+document.addEventListener('pjax:send', () => {
+  Pace.restart()
+})
+</script><link rel="stylesheet" href="/css/center-radar.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://dsm04pap003files.storage.live.com/y4mGzUo85ZsNCIPi7C2wm8sh0yAQNRuHs0dcx535PNkgi1KQ3n2mUAo04_v69gI1Pkw7JSYZF15cmW00wkgtFVnz-voluy-7UI3wZVFtcROhp9_6A93gaa6v1o6B6qkNmHMGGmccJ1vhaLLDbofdPF-tzT81LTVLhuqev7CtUTpz5mSkqUbB48TVu5gWJ6AwAWt?width=959&amp;height=959&amp;cropmode=none" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">28</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://asset.qianmmo.top/cover/aframe.png')"><nav id="nav"><span id="blog-info"><a href="/" title="Qianmoxsn的主页"><span class="site-name">Qianmoxsn的主页</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">A-Frame 快速入门</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-07-12T12:00:00.000Z" title="发表于 2023-07-12 20:00:00">2023-07-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-02-27T14:23:18.491Z" title="更新于 2024-02-27 22:23:18">2024-02-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/A-Frame/">A-Frame</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="A-Frame 快速入门"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="A-Frame-快速入门"><a href="#A-Frame-快速入门" class="headerlink" title="A-Frame 快速入门"></a>A-Frame 快速入门</h1><hr>
+<p>本篇基于A-Frame官方文档1.4.0编写。<a target="_blank" rel="noopener" href="https://aframe.io/docs/1.4.0/introduction/">官方文档跳转</a></p>
+<hr>
+<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><h3 id="1-使用node-vite建立可热重载的开发环境"><a href="#1-使用node-vite建立可热重载的开发环境" class="headerlink" title="1. 使用node+vite建立可热重载的开发环境"></a>1. 使用node+vite建立可热重载的开发环境</h3><p>创建vite项目，详见 <a target="_blank" rel="noopener" href="https://cn.vitejs.dev/guide/#scaffolding-your-first-vite-project">搭建第一个 Vite 项目</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm create vite@latest</span><br></pre></td></tr></table></figure>
+
+<p>进入项目内安装依赖(package.json)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-使用cdn引入aframe-js"><a href="#2-使用cdn引入aframe-js" class="headerlink" title="2. 使用cdn引入aframe.js"></a>2. 使用cdn引入aframe.js</h3><p>在index.html中引入aframe.js</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://aframe.io/releases/1.4.0/aframe.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-复制运行示例代码"><a href="#3-复制运行示例代码" class="headerlink" title="3. 复制运行示例代码"></a>3. 复制运行示例代码</h3><p><strong>index.html</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://aframe.io/releases/1.4.0/aframe.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>A-Frame-test-area<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a-scene</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a-box</span> <span class="attr">position</span>=<span class="string">&quot;-1 0.5 -3&quot;</span> <span class="attr">rotation</span>=<span class="string">&quot;0 45 0&quot;</span> <span class="attr">color</span>=<span class="string">&quot;#4CC3D9&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">a-box</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a-sphere</span> <span class="attr">position</span>=<span class="string">&quot;0 1.25 -5&quot;</span> <span class="attr">radius</span>=<span class="string">&quot;1.25&quot;</span> <span class="attr">color</span>=<span class="string">&quot;#EF2D5E&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">a-sphere</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a-cylinder</span> <span class="attr">position</span>=<span class="string">&quot;1 0.75 -3&quot;</span> <span class="attr">radius</span>=<span class="string">&quot;0.5&quot;</span> <span class="attr">height</span>=<span class="string">&quot;1.5&quot;</span> <span class="attr">color</span>=<span class="string">&quot;#FFC65D&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">a-cylinder</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a-plane</span> <span class="attr">position</span>=<span class="string">&quot;0 0 -4&quot;</span> <span class="attr">rotation</span>=<span class="string">&quot;-90 0 0&quot;</span> <span class="attr">width</span>=<span class="string">&quot;4&quot;</span> <span class="attr">height</span>=<span class="string">&quot;4&quot;</span> <span class="attr">color</span>=<span class="string">&quot;#7BC8A4&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">a-plane</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a-sky</span> <span class="attr">color</span>=<span class="string">&quot;#ECECEC&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">a-sky</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">a-scene</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://aframe.io/docs/1.4.0/introduction/html-and-primitives.html#example">代码处于此处，有修改</a></p>
+<p><strong>执行命令运行项目</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
+
+<p>在浏览器中打开<a href="localhost:5173">默认端口5173</a>，即可看到效果</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><img src="/img.png" alt="img.png"></h2><h2 id="基本场景建立"><a href="#基本场景建立" class="headerlink" title="基本场景建立"></a>基本场景建立</h2><h3 id="-1"><a href="#-1" class="headerlink" title=""></a><a-scene></h3><p><code>&lt;a-scene&gt;</code>是A-Frame的根标签，用来容纳所有的实体。同时为3D场景提供了一些基本的配置。</p>
+<blockquote>
+<p><code>&lt;a-scene&gt;</code> handles all of the setup that is required for 3D: setting up WebGL, the canvas, camera, lights, renderer,<br>render loop as well as out of the box WebVR support on platforms such as HTC Vive, Oculus Rift, Samsung GearVR, and<br>smartphones (Google Cardboard).</p>
+</blockquote>
+<h3 id="实体-Entity"><a href="#实体-Entity" class="headerlink" title="实体(Entity)"></a>实体(Entity)</h3><h4 id="1-基本体（Primitive）"><a href="#1-基本体（Primitive）" class="headerlink" title="1. 基本体（Primitive）"></a>1. 基本体（Primitive）</h4><p>基本体是A-Frame中的基本元素，可以通过<code>&lt;a-box&gt;</code>、<code>&lt;a-sphere&gt;</code>、<code>&lt;a-cylinder&gt;</code>、<code>&lt;a-plane&gt;</code>等标签创建。<br>其用法与HTML标签用法相同。可以在其中添加属性，如<code>position</code>、<code>rotation</code>、<code>color</code>等。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">a-box</span> <span class="attr">color</span>=<span class="string">&quot;red&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">a-box</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2"><a href="#2" class="headerlink" title="2. "></a>2. <a-entity></h4><p><code>&lt;a-entity&gt;</code>是A-Frame中的通用实体，可以用来创建自定义的实体。<br>例如上述的a-box基本体，可以通过如下<code>&lt;a-entity&gt;</code>标签创建。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">a-entity</span> <span class="attr">id</span>=<span class="string">&quot;box&quot;</span> <span class="attr">geometry</span>=<span class="string">&quot;primitive: box&quot;</span> <span class="attr">material</span>=<span class="string">&quot;color: red&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">a-entity</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="变形（Transforming）"><a href="#变形（Transforming）" class="headerlink" title="变形（Transforming）"></a>变形（Transforming）</h3><p><code>A-Frame</code> 使用右手直角坐标系，其中X轴指向右侧，Y轴指向上方，Z轴指向屏幕外方向（我们）。<br><img src="/img_1.png" alt="img_1.png"><br><code>A-Frame</code> 的距离单位是**米(meters)<strong>，角度单位是</strong>度(degree)**。</p>
+<p>关于角度的判别：</p>
+<blockquote>
+<p>To determine the positive direction of rotation, use the right-hand rule. Point our thumbs down the direction of a<br>positive axis, and the direction which our fingers curl around the positive direction of rotation.</p>
+</blockquote>
+<p>至此，我们可以通过更改标签的<code>position</code>、<code>rotation</code>、<code>scale</code>属性来改变实体的位置、旋转、缩放。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">a-box</span> <span class="attr">color</span>=<span class="string">&quot;red&quot;</span> <span class="attr">rotation</span>=<span class="string">&quot;0 45 45&quot;</span> <span class="attr">scale</span>=<span class="string">&quot;2 2 2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">a-box</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="变形的继承（Parent-and-Child-Transforms）"><a href="#变形的继承（Parent-and-Child-Transforms）" class="headerlink" title="变形的继承（Parent and Child Transforms）"></a>变形的继承（Parent and Child Transforms）</h3><p>通过html标签，我们可以实现实体的单继承</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">a-scene</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a-box</span> <span class="attr">position</span>=<span class="string">&quot;0 2 0&quot;</span> <span class="attr">rotation</span>=<span class="string">&quot;0 45 45&quot;</span> <span class="attr">scale</span>=<span class="string">&quot;2 4 2&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">a-sphere</span> <span class="attr">position</span>=<span class="string">&quot;1 0 3&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">a-sphere</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">a-box</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">a-scene</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这个例子中球体作为了盒子的子实体。<br>球的绝对位置（world position）通过结合自身和父位的position属性计算，本例为<code>1 2 3</code>，<br>相似的对于旋转和缩放，球体将继承父位的旋转和缩放。<br>如果复位的属性发生改变，子实体的绝对位置也会立即发生改变。</p>
+<h2 id="DOM操作"><a href="#DOM操作" class="headerlink" title="DOM操作"></a>DOM操作</h2><blockquote>
+<p>以下操作在浏览器开发者工具中控制台进行<br>本段实例代码如下</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a-scene</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a-box</span> <span class="attr">position</span>=<span class="string">&quot;-1 0.5 -3&quot;</span> <span class="attr">rotation</span>=<span class="string">&quot;0 45 0&quot;</span> <span class="attr">color</span>=<span class="string">&quot;#4CC3D9&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">a-box</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a-sphere</span> <span class="attr">id</span>=<span class="string">0</span> <span class="attr">class</span>=<span class="string">&quot;test&quot;</span> <span class="attr">position</span>=<span class="string">&quot;0 1.25 -5&quot;</span> <span class="attr">radius</span>=<span class="string">&quot;1.25&quot;</span> <span class="attr">color</span>=<span class="string">&quot;#EF2D5E&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">a-sphere</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">a-cylinder</span> <span class="attr">id</span>=<span class="string">1</span> <span class="attr">class</span>=<span class="string">&quot;test&quot;</span> <span class="attr">position</span>=<span class="string">&quot;1 0.75 -3&quot;</span> <span class="attr">radius</span>=<span class="string">&quot;0.5&quot;</span> <span class="attr">height</span>=<span class="string">&quot;1.5&quot;</span> <span class="attr">color</span>=<span class="string">&quot;#FFC65D&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">a-cylinder</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">a-plane</span> <span class="attr">position</span>=<span class="string">&quot;0 0 -4&quot;</span> <span class="attr">rotation</span>=<span class="string">&quot;-90 0 0&quot;</span> <span class="attr">width</span>=<span class="string">&quot;4&quot;</span> <span class="attr">height</span>=<span class="string">&quot;4&quot;</span> <span class="attr">color</span>=<span class="string">&quot;#7BC8A4&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">a-plane</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">a-sky</span> <span class="attr">color</span>=<span class="string">&quot;#ECECEC&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">a-sky</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">a-scene</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="1-获取实体"><a href="#1-获取实体" class="headerlink" title="1. 获取实体"></a>1. 获取实体</h3><p>使用<code>.querySelector()</code>方法获取一个实体</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> sceneEl = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;a-scene&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(sceneEl);</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>.querySelectorAll()</code>方法获取多个实体</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> entities = <span class="variable language_">document</span>.<span class="title function_">querySelectorAll</span>(<span class="string">&#x27;a-entity&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(entities);</span><br></pre></td></tr></table></figure>
+
+<p>标签选择、类选择、id选择、属性选择等方法如下</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> sceneEl = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;a-scene&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> el1 = sceneEl.<span class="title function_">querySelector</span>(<span class="string">&#x27;a-box&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> el2 = sceneEl.<span class="title function_">querySelector</span>(<span class="string">&#x27;.test&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> el3 = sceneEl.<span class="title function_">querySelector</span>(<span class="string">&#x27;#column&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> el4 = sceneEl.<span class="title function_">querySelector</span>(<span class="string">&#x27;[color=&quot;#4CC3D9&quot;]&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>([el1, el2, el3, el4]);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>(4) [a-box, a-sphere#ball.test, a-cylinder#column.test, a-box]</p>
+</blockquote>
+<h3 id="2-获取实体的属性"><a href="#2-获取实体的属性" class="headerlink" title="2. 获取实体的属性"></a>2. 获取实体的属性</h3><p>使用<code>.getAttribute()</code>方法获取实体的属性</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> el = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;a-box&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(el.<span class="title function_">getAttribute</span>(<span class="string">&#x27;color&#x27;</span>));</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>#4CC3D9</p>
+</blockquote>
+<h3 id="3-设置实体的属性"><a href="#3-设置实体的属性" class="headerlink" title="3. 设置实体的属性"></a>3. 设置实体的属性</h3><p>使用<code>.setAttribute()</code>方法设置实体的属性</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> el = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;a-box&#x27;</span>);</span><br><span class="line">el.<span class="title function_">setAttribute</span>(<span class="string">&#x27;color&#x27;</span>, <span class="string">&#x27;#FFC65D&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="事件与组件写法"><a href="#事件与组件写法" class="headerlink" title="事件与组件写法"></a>事件与组件写法</h2><h3 id="组件基本写法及使用"><a href="#组件基本写法及使用" class="headerlink" title="组件基本写法及使用"></a>组件基本写法及使用</h3><p>在 <code>components/helloworld.js</code>中写入如下代码以创建组件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable constant_">AFRAME</span>.<span class="title function_">registerComponent</span>(<span class="string">&#x27;helloworld&#x27;</span>, &#123;</span><br><span class="line">    <span class="attr">init</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Hello, World!&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>index.html</code>中引入插件</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;components/helloworld.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>至此我们可以向任意实体添加<code>helloworld</code>组件</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">a-scene</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a-box</span> <span class="attr">position</span>=<span class="string">&quot;-1 0.5 -3&quot;</span> <span class="attr">...</span> <span class="attr">helloworld</span>&gt;</span><span class="tag">&lt;/<span class="name">a-box</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">a-scene</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>或者通过js代码添加组件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ball = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;#ball&#x27;</span>);</span><br><span class="line">ball.<span class="title function_">setAttribute</span>(<span class="string">&#x27;helloworld&#x27;</span>, <span class="string">&#x27;&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>通过js移除组件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ball.<span class="title function_">removeAttribute</span>(<span class="string">&#x27;helloworld&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h3><h3 id="插件架构-Schema"><a href="#插件架构-Schema" class="headerlink" title="插件架构 Schema"></a>插件架构 Schema</h3><p>Schema定义了插件的属性。包含了名称类型和默认值。</p>
+<blockquote>
+<p>The schema defines the properties of its component. As an analogy, if we think of a component as a function, then a<br>component’s properties are like its function arguments. A property has a name (if the component has more than one<br>property), a default value, and a property type. Property types define how data is parsed if its passed as a string (<br>i.e., from the DOM).</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable constant_">AFRAME</span>.<span class="title function_">registerComponent</span>(<span class="string">&#x27;testschema&#x27;</span>, &#123;</span><br><span class="line">    <span class="attr">schema</span>: &#123;</span><br><span class="line">        <span class="attr">message</span>: &#123;<span class="attr">type</span>: <span class="string">&#x27;string&#x27;</span>, <span class="attr">default</span>: <span class="string">&#x27;Aba...Aba.Aba..&#x27;</span>&#125;,</span><br><span class="line">        <span class="attr">input</span>: &#123;<span class="attr">type</span>: <span class="string">&#x27;string&#x27;</span>, <span class="attr">default</span>: <span class="string">&#x27;none&#x27;</span>&#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">init</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">data</span>.<span class="property">message</span> + <span class="string">&#x27;+&#x27;</span> + <span class="variable language_">this</span>.<span class="property">data</span>.<span class="property">input</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>测试：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ball = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;#ball&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> box = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;a-box&#x27;</span>);</span><br><span class="line">ball.<span class="title function_">setAttribute</span>(<span class="string">&#x27;testschema&#x27;</span>, <span class="string">&#x27;input:1234&#x27;</span>);</span><br><span class="line">box.<span class="title function_">setAttribute</span>(<span class="string">&#x27;testschema&#x27;</span>, <span class="string">&#x27;message:hello;input:world&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Aba...Aba.Aba..+1234</span><br><span class="line">hello+world</span><br></pre></td></tr></table></figure>
+
+<h3 id="插件生命周期"><a href="#插件生命周期" class="headerlink" title="插件生命周期"></a>插件生命周期</h3></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://blog.qianmmo.top">Qianmoxsn</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://blog.qianmmo.top/2023/07/12/aframe/">https://blog.qianmmo.top/2023/07/12/aframe/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://blog.qianmmo.top" target="_blank">Qianmoxsn的主页</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/aframe/">aframe</a><a class="post-meta__tags" href="/tags/web3D/">web3D</a><a class="post-meta__tags" href="/tags/Tutorial/">Tutorial</a></div><div class="post_share"><div class="social-share" data-image="https://asset.qianmmo.top/cover/aframe.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/07/17/GitHubtutorial/" title="Git/Github 快速入门"><img class="cover" src="https://asset.qianmmo.top/cover/git.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Git/Github 快速入门</div></div></a></div><div class="next-post pull-right"><a href="/2023/01/04/abg-iot4/" title="雏雁-Arduino部分（四）非阻塞延时"><img class="cover" src="https://asset.qianmmo.top/cover/chu_arduino_cover.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">雏雁-Arduino部分（四）非阻塞延时</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://dsm04pap003files.storage.live.com/y4mGzUo85ZsNCIPi7C2wm8sh0yAQNRuHs0dcx535PNkgi1KQ3n2mUAo04_v69gI1Pkw7JSYZF15cmW00wkgtFVnz-voluy-7UI3wZVFtcROhp9_6A93gaa6v1o6B6qkNmHMGGmccJ1vhaLLDbofdPF-tzT81LTVLhuqev7CtUTpz5mSkqUbB48TVu5gWJ6AwAWt?width=959&amp;height=959&amp;cropmode=none" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Qianmoxsn</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">28</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Qianmoxsn"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">CV一时爽，期末火葬场</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#A-Frame-%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8"><span class="toc-number">1.</span> <span class="toc-text">A-Frame 快速入门</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-number">1.1.</span> <span class="toc-text">环境搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BD%BF%E7%94%A8node-vite%E5%BB%BA%E7%AB%8B%E5%8F%AF%E7%83%AD%E9%87%8D%E8%BD%BD%E7%9A%84%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83"><span class="toc-number">1.1.1.</span> <span class="toc-text">1. 使用node+vite建立可热重载的开发环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%BD%BF%E7%94%A8cdn%E5%BC%95%E5%85%A5aframe-js"><span class="toc-number">1.1.2.</span> <span class="toc-text">2. 使用cdn引入aframe.js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%A4%8D%E5%88%B6%E8%BF%90%E8%A1%8C%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81"><span class="toc-number">1.1.3.</span> <span class="toc-text">3. 复制运行示例代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.2.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%9C%BA%E6%99%AF%E5%BB%BA%E7%AB%8B"><span class="toc-number">1.3.</span> <span class="toc-text">基本场景建立</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#-1"><span class="toc-number">1.3.1.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E4%BD%93-Entity"><span class="toc-number">1.3.2.</span> <span class="toc-text">实体(Entity)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%9F%BA%E6%9C%AC%E4%BD%93%EF%BC%88Primitive%EF%BC%89"><span class="toc-number">1.3.2.1.</span> <span class="toc-text">1. 基本体（Primitive）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2"><span class="toc-number">1.3.2.2.</span> <span class="toc-text">2. </span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E5%BD%A2%EF%BC%88Transforming%EF%BC%89"><span class="toc-number">1.3.3.</span> <span class="toc-text">变形（Transforming）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E5%BD%A2%E7%9A%84%E7%BB%A7%E6%89%BF%EF%BC%88Parent-and-Child-Transforms%EF%BC%89"><span class="toc-number">1.3.4.</span> <span class="toc-text">变形的继承（Parent and Child Transforms）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DOM%E6%93%8D%E4%BD%9C"><span class="toc-number">1.4.</span> <span class="toc-text">DOM操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%8E%B7%E5%8F%96%E5%AE%9E%E4%BD%93"><span class="toc-number">1.4.1.</span> <span class="toc-text">1. 获取实体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E8%8E%B7%E5%8F%96%E5%AE%9E%E4%BD%93%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="toc-number">1.4.2.</span> <span class="toc-text">2. 获取实体的属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E8%AE%BE%E7%BD%AE%E5%AE%9E%E4%BD%93%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="toc-number">1.4.3.</span> <span class="toc-text">3. 设置实体的属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E4%B8%8E%E7%BB%84%E4%BB%B6%E5%86%99%E6%B3%95"><span class="toc-number">1.5.</span> <span class="toc-text">事件与组件写法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E5%9F%BA%E6%9C%AC%E5%86%99%E6%B3%95%E5%8F%8A%E4%BD%BF%E7%94%A8"><span class="toc-number">1.5.1.</span> <span class="toc-text">组件基本写法及使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6"><span class="toc-number">1.5.2.</span> <span class="toc-text">事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%92%E4%BB%B6%E6%9E%B6%E6%9E%84-Schema"><span class="toc-number">1.5.3.</span> <span class="toc-text">插件架构 Schema</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%92%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-number">1.5.4.</span> <span class="toc-text">插件生命周期</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/26/bupt32/" title="Course Schedule">Course Schedule</a><time datetime="2024-02-26T02:00:00.000Z" title="发表于 2024-02-26 10:00:00">2024-02-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/13/MatrixDeploymentonDocker/" title="在Ubuntu 22.04上使用Docker部署Matrix服务"><img src="https://asset.qianmmo.top/cover/matrix.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="在Ubuntu 22.04上使用Docker部署Matrix服务"/></a><div class="content"><a class="title" href="/2024/02/13/MatrixDeploymentonDocker/" title="在Ubuntu 22.04上使用Docker部署Matrix服务">在Ubuntu 22.04上使用Docker部署Matrix服务</a><time datetime="2024-02-13T12:00:00.000Z" title="发表于 2024-02-13 20:00:00">2024-02-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/13/NginxConfig/" title="Nginx服务器配置指南"><img src="https://asset.qianmmo.top/cover/nginx.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Nginx服务器配置指南"/></a><div class="content"><a class="title" href="/2024/02/13/NginxConfig/" title="Nginx服务器配置指南">Nginx服务器配置指南</a><time datetime="2024-02-13T05:00:00.000Z" title="发表于 2024-02-13 13:00:00">2024-02-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/13/NginxInstallation/" title="Nginx服务器安装指南"><img src="https://asset.qianmmo.top/cover/nginx.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Nginx服务器安装指南"/></a><div class="content"><a class="title" href="/2024/02/13/NginxInstallation/" title="Nginx服务器安装指南">Nginx服务器安装指南</a><time datetime="2024-02-13T04:00:00.000Z" title="发表于 2024-02-13 12:00:00">2024-02-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/11/cors/" title="CORS-跨源资源共享"><img src="https://asset.qianmmo.top/cover/cors.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CORS-跨源资源共享"/></a><div class="content"><a class="title" href="/2024/02/11/cors/" title="CORS-跨源资源共享">CORS-跨源资源共享</a><time datetime="2024-02-11T07:00:00.000Z" title="发表于 2024-02-11 15:00:00">2024-02-11</time></div></div></div></div></div></div></main><footer id="footer" style="background: #758d664d"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2024 By Qianmoxsn</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="icp"><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/"><span>京ICP备2024047404号-1</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.12.0"></script><script src="/js/main.js?v=4.12.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.32/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

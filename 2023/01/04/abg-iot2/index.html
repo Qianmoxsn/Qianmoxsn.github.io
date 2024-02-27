@@ -1,0 +1,176 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>雏雁-Arduino部分（二）LCD1602+IIC | Qianmoxsn的主页</title><meta name="author" content="Qianmoxsn"><meta name="copyright" content="Qianmoxsn"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="雏雁-Arduino部分（二）LCD1602+IIC引入库清单123#include &lt;LiquidCrystal_I2C.h&gt;&#x2F;&#x2F;下面这个是依赖库，自己带的，文件里写不写好像无所谓（写了肯定没问题）#include &lt;Wire.h&gt;  LiquidCrystal_I2C库使用准备的时候一般设定好lcd的行列数，实例lcd对象，在setup函数里面初始化lcd（begin、">
+<meta property="og:type" content="article">
+<meta property="og:title" content="雏雁-Arduino部分（二）LCD1602+IIC">
+<meta property="og:url" content="https://blog.qianmmo.top/2023/01/04/abg-iot2/index.html">
+<meta property="og:site_name" content="Qianmoxsn的主页">
+<meta property="og:description" content="雏雁-Arduino部分（二）LCD1602+IIC引入库清单123#include &lt;LiquidCrystal_I2C.h&gt;&#x2F;&#x2F;下面这个是依赖库，自己带的，文件里写不写好像无所谓（写了肯定没问题）#include &lt;Wire.h&gt;  LiquidCrystal_I2C库使用准备的时候一般设定好lcd的行列数，实例lcd对象，在setup函数里面初始化lcd（begin、">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://asset.qianmmo.top/cover/chu_arduino_cover.png">
+<meta property="article:published_time" content="2023-01-04T13:00:00.000Z">
+<meta property="article:modified_time" content="2024-02-27T14:23:18.490Z">
+<meta property="article:author" content="Qianmoxsn">
+<meta property="article:tag" content="雏雁计划项目">
+<meta property="article:tag" content="Arduino">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://asset.qianmmo.top/cover/chu_arduino_cover.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://blog.qianmmo.top/2023/01/04/abg-iot2/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.12.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.32/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":470},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '雏雁-Arduino部分（二）LCD1602+IIC',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-02-27 22:23:18'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/selfcss.css"><meta name="generator" content="Hexo 7.1.1"></head><body><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+document.addEventListener('pjax:send', () => {
+  Pace.restart()
+})
+</script><link rel="stylesheet" href="/css/center-radar.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://dsm04pap003files.storage.live.com/y4mGzUo85ZsNCIPi7C2wm8sh0yAQNRuHs0dcx535PNkgi1KQ3n2mUAo04_v69gI1Pkw7JSYZF15cmW00wkgtFVnz-voluy-7UI3wZVFtcROhp9_6A93gaa6v1o6B6qkNmHMGGmccJ1vhaLLDbofdPF-tzT81LTVLhuqev7CtUTpz5mSkqUbB48TVu5gWJ6AwAWt?width=959&amp;height=959&amp;cropmode=none" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">28</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://asset.qianmmo.top/cover/chu_arduino_cover.png')"><nav id="nav"><span id="blog-info"><a href="/" title="Qianmoxsn的主页"><span class="site-name">Qianmoxsn的主页</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">雏雁-Arduino部分（二）LCD1602+IIC</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-01-04T13:00:00.000Z" title="发表于 2023-01-04 21:00:00">2023-01-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-02-27T14:23:18.490Z" title="更新于 2024-02-27 22:23:18">2024-02-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%9B%8F%E9%9B%81%E8%AE%A1%E5%88%92%E9%A1%B9%E7%9B%AE/">雏雁计划项目</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="雏雁-Arduino部分（二）LCD1602+IIC"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="雏雁-Arduino部分（二）LCD1602-IIC"><a href="#雏雁-Arduino部分（二）LCD1602-IIC" class="headerlink" title="雏雁-Arduino部分（二）LCD1602+IIC"></a>雏雁-Arduino部分（二）LCD1602+IIC</h1><h2 id="引入库清单"><a href="#引入库清单" class="headerlink" title="引入库清单"></a>引入库清单</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;LiquidCrystal_I2C.h&gt;</span></span></span><br><span class="line"><span class="comment">//下面这个是依赖库，自己带的，文件里写不写好像无所谓（写了肯定没问题）</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;Wire.h&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<h2 id="LiquidCrystal-I2C库使用"><a href="#LiquidCrystal-I2C库使用" class="headerlink" title="LiquidCrystal_I2C库使用"></a>LiquidCrystal_I2C库使用</h2><p>准备的时候一般设定好lcd的行列数，实例lcd对象，在<code>setup</code>函数里面初始化lcd（begin、打开背光）<br><code>setCursor(0, 0)</code>函数用于设置光标位置，参数是行和列，从0开始<br><code>print()</code>函数用于打印字符串<br><code>println()</code>函数用于打印字符串并换行<br><code>clear()</code>函数用于清屏（这个清屏是全部清，我写了单清一行的函数后面说）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;Arduino.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;LiquidCrystal_I2C.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;Wire.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//lcd defination</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> COLUMS 16  <span class="comment">// LCD columns</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ROWS 2     <span class="comment">// LCD rows</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//这一行可以理解成实例一个lcd对象，参数是lcd的地址和。这个地址是通过i2c扫描器扫描出来的（自动的，因为0x27这个地址我写了报错）</span></span><br><span class="line">LiquidCrystal_I2C <span class="title function_">lcd</span><span class="params">(PCF8574_ADDR_A21_A11_A01, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">16</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">13</span>, <span class="number">14</span>,POSITIVE)</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">setup</span><span class="params">()</span> &#123;</span><br><span class="line">  <span class="comment">// LCD begin</span></span><br><span class="line">  lcd.begin(COLUMS, ROWS);</span><br><span class="line">  <span class="comment">//open lcd backlight</span></span><br><span class="line">  lcd.backlight();</span><br><span class="line">  lcd.setCursor(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">  lcd.print(<span class="string">&quot;HELLO&quot;</span>);</span><br><span class="line"></span><br><span class="line">  delay(<span class="number">1000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="清屏函数（某行）"><a href="#清屏函数（某行）" class="headerlink" title="清屏函数（某行）"></a>清屏函数（某行）</h2><p>先说为什么需要清屏函数。当我们重复的向lcd打印字符串的时候，如果不清屏，那么之前的字符串就会被覆盖。 当然这分几种情况：</p>
+<ol>
+<li>重复打印的字符串长度大于等于之前打印的字符串长度，那么之前的字符串就会被覆盖</li>
+<li>重复打印的字符串长度小于之前打印的字符串长度，那么之前的字符串就会被覆盖，但是后面的字符会保留</li>
+</ol>
+<p>举例：原始字符串<code>ACON</code>。如果我在同一起点（<code>setCursor</code>）写入<code>ACIN</code>或者<code>ACONN</code>，结果显示正确的<code>ACIN</code>或者A<code>CONN</code>。<br>但是如果我在同一起点写入<code>BC</code>，结果显示<code>BCON</code>。（<code>AC</code>被覆盖，<code>ON</code>没有）</p>
+<p>1602有两行，我们设计用第一行显示温湿度信息，第二行显示指令信息。所以需要清除第二行的函数。<br>这里传入参数是行数，我们在传入行的开始连续写入空格（空字符），完成覆盖。<br>（那个size_t就是typedefine unsigned int，copilot写的，我一方面懒得改，另一方面留着装逼）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">lcdclearline</span><span class="params">(<span class="type">int</span> line)</span> &#123;</span><br><span class="line">  lcd.setCursor(<span class="number">0</span>, line);</span><br><span class="line">  <span class="keyword">for</span> (<span class="type">size_t</span> i = <span class="number">0</span>; i &lt; COLUMS; i++) &#123;</span><br><span class="line">    lcd.print(<span class="string">&quot; &quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://blog.qianmmo.top">Qianmoxsn</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://blog.qianmmo.top/2023/01/04/abg-iot2/">https://blog.qianmmo.top/2023/01/04/abg-iot2/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://blog.qianmmo.top" target="_blank">Qianmoxsn的主页</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E9%9B%8F%E9%9B%81%E8%AE%A1%E5%88%92%E9%A1%B9%E7%9B%AE/">雏雁计划项目</a><a class="post-meta__tags" href="/tags/Arduino/">Arduino</a></div><div class="post_share"><div class="social-share" data-image="https://asset.qianmmo.top/cover/chu_arduino_cover.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/01/04/abg-iot3/" title="雏雁-Arduino部分（三）DHT11传感器使用"><img class="cover" src="https://asset.qianmmo.top/cover/chu_arduino_cover.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">雏雁-Arduino部分（三）DHT11传感器使用</div></div></a></div><div class="next-post pull-right"><a href="/2023/01/04/abg-iot1/" title="雏雁-Arduino部分（一）PIN口设置"><img class="cover" src="https://asset.qianmmo.top/cover/chu_arduino_cover.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">雏雁-Arduino部分（一）PIN口设置</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/01/04/abg-iot3/" title="雏雁-Arduino部分（三）DHT11传感器使用"><img class="cover" src="https://asset.qianmmo.top/cover/chu_arduino_cover.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-04</div><div class="title">雏雁-Arduino部分（三）DHT11传感器使用</div></div></a></div><div><a href="/2023/01/04/abg-iot1/" title="雏雁-Arduino部分（一）PIN口设置"><img class="cover" src="https://asset.qianmmo.top/cover/chu_arduino_cover.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-04</div><div class="title">雏雁-Arduino部分（一）PIN口设置</div></div></a></div><div><a href="/2023/01/04/abg-iot4/" title="雏雁-Arduino部分（四）非阻塞延时"><img class="cover" src="https://asset.qianmmo.top/cover/chu_arduino_cover.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-04</div><div class="title">雏雁-Arduino部分（四）非阻塞延时</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://dsm04pap003files.storage.live.com/y4mGzUo85ZsNCIPi7C2wm8sh0yAQNRuHs0dcx535PNkgi1KQ3n2mUAo04_v69gI1Pkw7JSYZF15cmW00wkgtFVnz-voluy-7UI3wZVFtcROhp9_6A93gaa6v1o6B6qkNmHMGGmccJ1vhaLLDbofdPF-tzT81LTVLhuqev7CtUTpz5mSkqUbB48TVu5gWJ6AwAWt?width=959&amp;height=959&amp;cropmode=none" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Qianmoxsn</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">28</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Qianmoxsn"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">CV一时爽，期末火葬场</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9B%8F%E9%9B%81-Arduino%E9%83%A8%E5%88%86%EF%BC%88%E4%BA%8C%EF%BC%89LCD1602-IIC"><span class="toc-number">1.</span> <span class="toc-text">雏雁-Arduino部分（二）LCD1602+IIC</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E5%85%A5%E5%BA%93%E6%B8%85%E5%8D%95"><span class="toc-number">1.1.</span> <span class="toc-text">引入库清单</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LiquidCrystal-I2C%E5%BA%93%E4%BD%BF%E7%94%A8"><span class="toc-number">1.2.</span> <span class="toc-text">LiquidCrystal_I2C库使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%85%E5%B1%8F%E5%87%BD%E6%95%B0%EF%BC%88%E6%9F%90%E8%A1%8C%EF%BC%89"><span class="toc-number">1.3.</span> <span class="toc-text">清屏函数（某行）</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/26/bupt32/" title="Course Schedule">Course Schedule</a><time datetime="2024-02-26T02:00:00.000Z" title="发表于 2024-02-26 10:00:00">2024-02-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/13/MatrixDeploymentonDocker/" title="在Ubuntu 22.04上使用Docker部署Matrix服务"><img src="https://asset.qianmmo.top/cover/matrix.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="在Ubuntu 22.04上使用Docker部署Matrix服务"/></a><div class="content"><a class="title" href="/2024/02/13/MatrixDeploymentonDocker/" title="在Ubuntu 22.04上使用Docker部署Matrix服务">在Ubuntu 22.04上使用Docker部署Matrix服务</a><time datetime="2024-02-13T12:00:00.000Z" title="发表于 2024-02-13 20:00:00">2024-02-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/13/NginxConfig/" title="Nginx服务器配置指南"><img src="https://asset.qianmmo.top/cover/nginx.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Nginx服务器配置指南"/></a><div class="content"><a class="title" href="/2024/02/13/NginxConfig/" title="Nginx服务器配置指南">Nginx服务器配置指南</a><time datetime="2024-02-13T05:00:00.000Z" title="发表于 2024-02-13 13:00:00">2024-02-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/13/NginxInstallation/" title="Nginx服务器安装指南"><img src="https://asset.qianmmo.top/cover/nginx.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Nginx服务器安装指南"/></a><div class="content"><a class="title" href="/2024/02/13/NginxInstallation/" title="Nginx服务器安装指南">Nginx服务器安装指南</a><time datetime="2024-02-13T04:00:00.000Z" title="发表于 2024-02-13 12:00:00">2024-02-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/11/cors/" title="CORS-跨源资源共享"><img src="https://asset.qianmmo.top/cover/cors.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CORS-跨源资源共享"/></a><div class="content"><a class="title" href="/2024/02/11/cors/" title="CORS-跨源资源共享">CORS-跨源资源共享</a><time datetime="2024-02-11T07:00:00.000Z" title="发表于 2024-02-11 15:00:00">2024-02-11</time></div></div></div></div></div></div></main><footer id="footer" style="background: #758d664d"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2024 By Qianmoxsn</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="icp"><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/"><span>京ICP备2024047404号-1</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.12.0"></script><script src="/js/main.js?v=4.12.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.32/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

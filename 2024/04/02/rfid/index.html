@@ -1,0 +1,676 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>RFID 无线射频识别 | Qianmoxsn的主页</title><meta name="author" content="Qianmoxsn"><meta name="copyright" content="Qianmoxsn"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="RFID 无线射频识别 CH1&amp;CH2 RFID技术概览  写前面：  Definition and scope of RFID RFID (Radio Frequency Identification) is a technology that uses radio frequency waves to transfer energy and data between a reader">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RFID 无线射频识别">
+<meta property="og:url" content="https://blog.qianmmo.top/2024/04/02/rfid/index.html">
+<meta property="og:site_name" content="Qianmoxsn的主页">
+<meta property="og:description" content="RFID 无线射频识别 CH1&amp;CH2 RFID技术概览  写前面：  Definition and scope of RFID RFID (Radio Frequency Identification) is a technology that uses radio frequency waves to transfer energy and data between a reader">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://asset.qianmmo.top/cover/rfid.jpg">
+<meta property="article:published_time" content="2024-04-02T02:00:00.000Z">
+<meta property="article:modified_time" content="2024-04-07T14:41:13.020Z">
+<meta property="article:author" content="Qianmoxsn">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://asset.qianmmo.top/cover/rfid.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://blog.qianmmo.top/2024/04/02/rfid/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.12.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.32/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":470},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'RFID 无线射频识别',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-04-07 22:41:13'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/selfcss.css"><meta name="generator" content="Hexo 7.1.1"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+document.addEventListener('pjax:send', () => {
+  Pace.restart()
+})
+</script><link rel="stylesheet" href="/css/center-radar.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://dsm04pap003files.storage.live.com/y4mGzUo85ZsNCIPi7C2wm8sh0yAQNRuHs0dcx535PNkgi1KQ3n2mUAo04_v69gI1Pkw7JSYZF15cmW00wkgtFVnz-voluy-7UI3wZVFtcROhp9_6A93gaa6v1o6B6qkNmHMGGmccJ1vhaLLDbofdPF-tzT81LTVLhuqev7CtUTpz5mSkqUbB48TVu5gWJ6AwAWt?width=959&amp;height=959&amp;cropmode=none" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">34</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">30</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://asset.qianmmo.top/cover/rfid.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Qianmoxsn的主页"><span class="site-name">Qianmoxsn的主页</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">RFID 无线射频识别</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-04-02T02:00:00.000Z" title="发表于 2024-04-02 10:00:00">2024-04-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-04-07T14:41:13.020Z" title="更新于 2024-04-07 22:41:13">2024-04-07</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="RFID 无线射频识别"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="rfid-无线射频识别">RFID 无线射频识别</h1>
+<h1 id="ch1-ch2-rfid技术概览">CH1&amp;CH2 RFID技术概览</h1>
+<blockquote>
+<p>写前面：</p>
+</blockquote>
+<h2 id="definition-and-scope-of-rfid">Definition and scope of RFID</h2>
+<p>RFID (Radio Frequency Identification) is a technology that uses radio frequency waves to transfer energy and data between a reader and a movable item to identify, categorize, track, …</p>
+<p>无线射频识别：使用电磁波传递能量和数据。。。</p>
+<h2 id="automatic-identification-technology-自动识别技术">Automatic identification technology「自动识别技术」</h2>
+<p>自动指区分于人（<strong>Human identification</strong>）</p>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled.png" alt="Untitled"></p>
+<p>Three advantages of using RFID compared to bar code scanning are:<br>
+§ <strong>More efficiency:</strong> you can scan multiple items at once<br>
+§ <strong>More durability:</strong> tags can handle exposure to weather conditions like sun and</p>
+<p>rain<br>
+§ <strong>More security:</strong> you can encrypt RFID tags so only your reader can get the data</p>
+<h2 id="main-features-of-rfid">Main features of RFID</h2>
+<p><strong>Non-contact automatic and rapid identification</strong></p>
+<p>The RFID tag returns data by backscattering the energy, with an effective communication range of 6-10 m.<br>
+The RFID system uses an effective anti-collision mechanism to read tags, enabling rapid identification of a large number of tags.</p>
+<p><strong>Permanently store a certain amount of data</strong></p>
+<p>RFID tag has a user storage area, which can store 1KB-10KB of user data.</p>
+<p><strong>Simple logical processing</strong></p>
+<p>RFID has a very limited number of internal logic gates, so only a simple logical processing can be made.<br>
+But the RFID system can use the basic logic processing ability of tags to achieve some effective protocols and algorithms to improve the system operating efficiency and security performance.</p>
+<p><strong>Reflection signal strength is affected by the distance and other factors significantly</strong></p>
+<p>Since the RFID tag itself is a passive device, the feedback signal must be modulated by backscatter.</p>
+<p>Therefore, the strength of the RFID tag reflection signal is susceptible to the surrounding environment, including distance, reader power, signal interference, and tag deployment density.</p>
+<p><strong>Low cost, can be deployed at a large scale</strong></p>
+<p>RFID tags tend to large-scale mass production using printed circuits, so manufacturing costs can be significantly reduced.<br>
+At present, the cost of an RFID tag can be controlled at around 10 cents.</p>
+<h2 id="constraints-of-rfid"><strong>Constraints</strong> of RFID</h2>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%201.png" alt="Untitled"></p>
+<hr>
+<h1 id="ch3-rfid系统组成">CH3 RFID系统组成</h1>
+<blockquote>
+<p>写前面：</p>
+</blockquote>
+<p>RFID系统基本组成：Reader Tag Software，本章按此展开</p>
+<h2 id="reader">Reader</h2>
+<h3 id="功能">功能</h3>
+<ol>
+<li>能量供给 提供能量给tag（tag一般看作被动）</li>
+<li>安全性 加密解密</li>
+<li>无线通讯 和tag通讯 和上层应用通讯 组网 管理天线等</li>
+</ol>
+<h3 id="工作频率">工作频率</h3>
+<p>详见下一章，低频（LF HF）往往距离更短（1m）</p>
+<h3 id="外观">外观</h3>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%202.png" alt="Untitled"></p>
+<h3 id="读写距离">读写距离</h3>
+<p>影响因素：天线耦合方式 天线（极化）方向 输出功率 载波频率</p>
+<p>关于极化方向，两个tag极化方向一致功率最大</p>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%203.png" alt="Untitled"></p>
+<p>详见后文</p>
+<h3 id="component">component</h3>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%204.png" alt="Untitled"></p>
+<p><strong>射频模块工作原理</strong></p>
+<p>两种工作类型</p>
+<ul>
+<li>
+<p>Inductively Coupled RF Modules 「感应耦合」</p>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%205.png" alt="Untitled"></p>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%206.png" alt="Untitled"></p>
+<p>LC Tag的谐振「resonance」频率（有点类似与共振那种固有频率）</p>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%207.png" alt="Untitled"></p>
+</li>
+<li>
+<p>Electromagnetic Backscatter Coupled RF Module 「电磁反向散射」</p>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%208.png" alt="Untitled"></p>
+</li>
+</ul>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%209.png" alt="Untitled"></p>
+<h2 id="tag">Tag</h2>
+<h3 id="功能">功能</h3>
+<ul>
+<li>数据存储</li>
+<li>非接触读写</li>
+<li>能量获取</li>
+</ul>
+<h3 id="外观">外观</h3>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2010.png" alt="Untitled"></p>
+<h3 id="读写模式">读写模式</h3>
+<p>只读 读写</p>
+<h3 id="能量源">能量源</h3>
+<p>主动（有源） 标签电池</p>
+<p>半主动 （半有源）</p>
+<p>被动（无源）靠载波能量</p>
+<h3 id="component">component</h3>
+<p>analog front end, control unit and storage unit</p>
+<p>模拟前端：整流（能量获取）解调（得到基带信号）调制（调试res信息）提供时钟</p>
+<p>控制：解码 编码 校验 加密 解密 防碰撞</p>
+<p>存储：存储数据</p>
+<h3 id="唤醒电路">唤醒电路</h3>
+<hr>
+<h1 id="ch4-无线通信原理">CH4 无线通信原理</h1>
+<blockquote>
+<p>写前面：巨几把墨迹的一章，内容涵盖了大学物理电磁波一段的复习，无线通信原理比如RF频谱分类包括编码调制的一些内容（虽然下一章叫编码调制），信号能量计算和表达（引入dB），链路预算（从能量传输的角度展示rfid工作过程，为什么会有距离限制），天线（天线增益），使用有向天线（增益）后的链路，天线极性等现实中的信号传输问题。我感觉这里能量部分主要讲的是电磁反向散射那一套，毕竟例子频率915MHz和3m距离超过了低频的范围。</p>
+</blockquote>
+<h2 id="电磁场理论">电磁场理论</h2>
+<p>RFID使用电磁波传输能量和信息</p>
+<p>电场和磁场垂直，且和传播方向垂直</p>
+<p>电磁场（无线场，天线场）分为两个部分：进场和远场</p>
+<p>近场和远场的划分为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mo>=</mo><mfrac><mi>λ</mi><mrow><mn>2</mn><mi>π</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">r = { {\lambda}\over{2\pi} }</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.2251079999999999em;vertical-align:-0.345em;"></span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8801079999999999em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mathdefault mtight" style="margin-right:0.03588em;">π</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">λ</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span>，有可能天线场不太一样以为我见过有本书里的公式带天线的直径</p>
+<h2 id="radio频谱">Radio频谱</h2>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2011.png" alt="Untitled"></p>
+<p>对于计算频率或者波长记住有个公式（c=光速=3x10^8）</p>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2012.png" alt="Untitled"></p>
+<p>LF和HF经常使用感应耦合「inductively coupled」的方式</p>
+<p>UHF和SHF经常使用电磁反向散射「electromagnetic backscatter coupled」的方式</p>
+<p>能量相关计算</p>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2013.png" alt="Untitled"></p>
+<p>P_av说的是平均功率（考虑正弦波电压有效值是最大值的根号2倍）</p>
+<h2 id="db-dbm-dbi-dbd">dB，dBm，dBi，dBd</h2>
+<p>dB，一种衡量能量的方式，不同于瓦特的线性，dB表示一种倍数关系，具体是</p>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2014.png" alt="Untitled"></p>
+<p>举例来说</p>
+<p>3dB表示2倍，+3dB功率乘2，-3dB功率除2</p>
+<p>10dB表示10倍，+10dB功率乘10，-3dB功率除10</p>
+<p>但只有相对量是没有意义的</p>
+<p>引入dBm，以毫瓦为参照简历绝对量</p>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2015.png" alt="Untitled"></p>
+<p>30dBm=1W</p>
+<p>dBi，相对于全向天线的增益（详见后文）</p>
+<p>dBd，相对于偶极子天线的增益</p>
+<p>特别的，有 dBd = dBi -2.2 dB</p>
+<h2 id="调制">调制</h2>
+<p>首先，三种基本调制模式ASK FSK PSK，AFP分别表示幅值 频率 相位</p>
+<p>三种基本调制（2xSK）示意图</p>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2016.png" alt="Untitled"></p>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2017.png" alt="Untitled"></p>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2018.png" alt="Untitled"></p>
+<p>对于reader来说，采用ASK的方式</p>
+<ul>
+<li><strong>OOK「On-Off Keying」</strong></li>
+</ul>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2019.png" alt="Untitled"></p>
+<p>有个小问题就是reader如果在0状态就不发送能量了，tag无法工作</p>
+<ul>
+<li><strong>PIE「Pulse Interval Encoding」</strong></li>
+</ul>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2020.png" alt="Untitled"></p>
+<p>§ “1”: output a <strong>long time of high power</strong> followed by <strong>a short time of low power</strong><br>
+§ “0”: output a <strong>short time of high power</strong> followed by <strong>a short time of low power</strong></p>
+<p>能计算出传输能量的时间占比</p>
+<p>50%*50%+50%*75%=62.5%</p>
+<p>对于tag来说，使用FSK方式</p>
+<p>编码方式为</p>
+<ul>
+<li><strong>FM0</strong></li>
+</ul>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2021.png" alt="Untitled"></p>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2022.png" alt="Untitled"></p>
+<h2 id="链路-能量-预算-link-budget">链路（能量）预算「Link Budget」</h2>
+<p>从能量的角度解释传播距离</p>
+<p>影响因素：</p>
+<ul>
+<li>reader发送功率
+<ul>
+<li>power（reader功率限制）</li>
+<li>频率</li>
+<li>现实应用（规章限制）</li>
+</ul>
+</li>
+<li>Path Loss</li>
+<li>tag激活能量（Threshold）</li>
+<li>增益（下部分）</li>
+</ul>
+<blockquote>
+<p>这一部分进行的叙述和论证建立在全向且各向同性的天线上，即辐射场为球形<br>
+发射公率为1W（30dBm）同时电磁波频率为915MHz</p>
+</blockquote>
+<h3 id="path-loss">Path Loss</h3>
+<p>对于从天线到某一距离为r的点，接受功率的表达式为</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mrow><mi>R</mi><mi>X</mi></mrow></msub><mo>=</mo><msub><mi>P</mi><mrow><mi>T</mi><mi>X</mi></mrow></msub><mfrac><msub><mi>A</mi><mi>e</mi></msub><mrow><mn>4</mn><mi>π</mi><msup><mi>r</mi><mn>2</mn></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">P_{RX}=P_{TX}{A_e\over4\pi r^2}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault mtight" style="margin-right:0.07847em;">X</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.04633em;vertical-align:-0.686em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight" style="margin-right:0.07847em;">X</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.36033em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">4</span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.740108em;"><span style="top:-2.9890000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">e</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></span></p>
+<p>P_rx：接收功率</p>
+<p>P_tx：（全向）天线发射功率</p>
+<p>A_e：有效孔径，下面给公式</p>
+<p>r：距离全向天线中心（球心）距离</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi><mi>e</mi></msub><mo>=</mo><mfrac><msup><mi>λ</mi><mn>2</mn></msup><mrow><mn>4</mn><mi>π</mi></mrow></mfrac><mspace linebreak="newline"></mspace><mtext>整理有：</mtext><msub><mi>P</mi><mrow><mi>R</mi><mi>X</mi></mrow></msub><mo>=</mo><msub><mi>P</mi><mrow><mi>T</mi><mi>X</mi></mrow></msub><mo stretchy="false">(</mo><mfrac><mi>λ</mi><mrow><mn>4</mn><mi>π</mi><mi>r</mi></mrow></mfrac><msup><mo stretchy="false">)</mo><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">A_e={\lambda^2 \over 4\pi} \\整理有：
+P_{RX}=P_{TX}({\lambda\over4\pi r})^2
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">e</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.177108em;vertical-align:-0.686em;"></span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.491108em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">4</span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault">λ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord cjk_fallback">整</span><span class="mord cjk_fallback">理</span><span class="mord cjk_fallback">有</span><span class="mord cjk_fallback">：</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault mtight" style="margin-right:0.07847em;">X</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.05744em;vertical-align:-0.686em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight" style="margin-right:0.07847em;">X</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.37144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">4</span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">λ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span></p>
+<p>\lamda：信号（电磁波）波长</p>
+<p>一些快速检索值距离与能量衰减</p>
+<table>
+<thead>
+<tr>
+<th>距离（m）</th>
+<th>衰减（-dB）</th>
+<th>参考值（发射30dBm 915MHz）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>32</td>
+<td>-1.6dBm</td>
+</tr>
+<tr>
+<td>3</td>
+<td>41</td>
+<td>-10dBm</td>
+</tr>
+<tr>
+<td>10</td>
+<td>52</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>tag的激活能量约30uW，能量利用率为30% → 接收能量不少于100uW（-10dBm）</p>
+<p>由上面信息可得前向链路能量图</p>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2023.png" alt="Untitled"></p>
+<p>注：斜率 -20dB/10m，-6dB/slot</p>
+<p>反向链路</p>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2024.png" alt="Untitled"></p>
+<p>前面说tag能量利用率30%，与这里-5dB照应</p>
+<p>反向链路reader的threshold参考值**-75dBm**，所以说明距离制约在前向链路上</p>
+<p>前面给了单向传输path loss公式</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mrow><mi>R</mi><mi>X</mi></mrow></msub><mo>=</mo><msub><mi>P</mi><mrow><mi>T</mi><mi>X</mi></mrow></msub><mo stretchy="false">(</mo><mfrac><mi>λ</mi><mrow><mn>4</mn><mi>π</mi><mi>r</mi></mrow></mfrac><msup><mo stretchy="false">)</mo><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">P_{RX}=P_{TX}({\lambda\over4\pi r})^2
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault mtight" style="margin-right:0.07847em;">X</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.05744em;vertical-align:-0.686em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight" style="margin-right:0.07847em;">X</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.37144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">4</span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">λ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span></p>
+<p>所以说很明显双向传输（reader→tag→reader）reader接收的能量与距离的4次方成反比</p>
+<h2 id="天线-antenna">天线「Antenna」</h2>
+<p>主要讲天线的增益和极性</p>
+<p><strong>各向同性*天线「isotropic antenna」</strong></p>
+<p><strong>全向天线 「omnidirectional antenna」</strong></p>
+<p><strong>定向天线 「directional antenna」</strong></p>
+<p><strong>偶极子天线  「dipole antenna」</strong></p>
+<p><strong>增益 「gain」</strong></p>
+<p><strong>辐射 「radiation」</strong></p>
+<p>*各项同性天线：即辐射场是球形切球面处处强度相等的天线。有时候会翻译成全向天线但是注意，不是<strong>omnidirectional</strong>这种全向，例如偶极子天线被认为是<strong>omnidirectional但并不isotropic</strong></p>
+<h3 id="定向天线增益">定向天线增益</h3>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2025.png" alt="Untitled"></p>
+<p>增益公式</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mo stretchy="false">(</mo><mi>d</mi><mi>B</mi><mi>i</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mn>4</mn><mi>π</mi></mrow><msub><mi mathvariant="normal">Ω</mi><mrow><mi>b</mi><mi>e</mi><mi>a</mi><mi>m</mi></mrow></msub></mfrac></mrow><annotation encoding="application/x-tex">G(dBi)={4\pi\over\Omega_{beam}}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">G</span><span class="mopen">(</span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mord mathdefault">i</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.1574400000000002em;vertical-align:-0.8360000000000001em;"></span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.3139999999999996em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord">Ω</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">b</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">m</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">4</span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8360000000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></span></p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Ω</mi></mrow><annotation encoding="application/x-tex">\Omega</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">Ω</span></span></span></span>表示立体角，对整个球面划分4<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>π</mi></mrow><annotation encoding="application/x-tex">\pi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span></span></span></span>，类似<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>θ</mi></mrow><annotation encoding="application/x-tex">\theta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span></span></span></span>表示平面角，对整个圆周划分2<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>π</mi></mrow><annotation encoding="application/x-tex">\pi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span></span></span></span></p>
+<h3 id="偶极子天线增益">偶极子天线增益</h3>
+<p>The dipole antenna does not radiate the signal along the axis but is uniformly radiated in all directions perpendicular to the axis</p>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2026.png" alt="Untitled"></p>
+<p>对比全向（**isotropic）**天线增益2.2dB</p>
+<p>所以</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mo stretchy="false">(</mo><mi>d</mi><mi>B</mi><mi>d</mi><mo stretchy="false">)</mo><mo>=</mo><mi>G</mi><mo stretchy="false">(</mo><mi>d</mi><mi>B</mi><mi>i</mi><mo stretchy="false">)</mo><mo>−</mo><mn>2.2</mn><mi>d</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">G(dBd)=G(dBi) -2.2 dB
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">G</span><span class="mopen">(</span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mord mathdefault">d</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">G</span><span class="mopen">(</span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mord mathdefault">i</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">.</span><span class="mord">2</span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span></span></span></span></span></p>
+<h3 id="等效全向辐射功率-eirp-equivalent-isotropic-radiated-power">等效全向辐射功率「EIRP <strong>Equivalent Isotropic Radiated Power</strong>」</h3>
+<p>字面意思，讲定向天线的功率等效为全向功率，便于用来制定规定</p>
+<p>EIRP=发射功率+增益</p>
+<p>例如规定EIRP不超过36dBm，现在有发射功率30dBm的天线，那么增益最大为6dBi</p>
+<h2 id="增益链路预算-跟上面那个一样就是算了增益">增益链路预算（跟上面那个一样就是算了增益）</h2>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2027.png" alt="Untitled"></p>
+<p>等效有效孔径</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi><mi>e</mi></msub><mo>=</mo><mi>G</mi><mo stretchy="false">(</mo><mfrac><msup><mi>λ</mi><mn>2</mn></msup><mrow><mn>4</mn><mi>π</mi></mrow></mfrac><mo stretchy="false">)</mo><mspace linebreak="newline"></mspace><mtext>整理有：</mtext><msub><mi>P</mi><mrow><mi>R</mi><mi>X</mi></mrow></msub><mo>=</mo><msub><mi>P</mi><mrow><mi>T</mi><mi>X</mi></mrow></msub><msub><mi>G</mi><mrow><mi>T</mi><mi>X</mi></mrow></msub><msub><mi>G</mi><mrow><mi>R</mi><mi>X</mi></mrow></msub><mo stretchy="false">(</mo><mfrac><mi>λ</mi><mrow><mn>4</mn><mi>π</mi><mi>r</mi></mrow></mfrac><msup><mo stretchy="false">)</mo><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">A_e=G({\lambda^2 \over 4\pi}) \\整理有：
+P_{RX}=P_{TX}G_{TX}G_{RX}({\lambda\over4\pi r})^2
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">e</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.177108em;vertical-align:-0.686em;"></span><span class="mord mathdefault">G</span><span class="mopen">(</span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.491108em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">4</span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault">λ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span><span class="mclose">)</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord cjk_fallback">整</span><span class="mord cjk_fallback">理</span><span class="mord cjk_fallback">有</span><span class="mord cjk_fallback">：</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault mtight" style="margin-right:0.07847em;">X</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.05744em;vertical-align:-0.686em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight" style="margin-right:0.07847em;">X</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">G</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight" style="margin-right:0.07847em;">X</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">G</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault mtight" style="margin-right:0.07847em;">X</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.37144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">4</span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">λ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span></p>
+<p>对于完整链路</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mrow><mi>T</mi><mi>X</mi><mo separator="true">,</mo><mi>t</mi><mi>a</mi><mi>g</mi></mrow></msub><mo>=</mo><msub><mi>P</mi><mrow><mi>T</mi><mi>X</mi><mo separator="true">,</mo><mi>r</mi><mi>e</mi><mi>a</mi><mi>d</mi><mi>e</mi><mi>r</mi></mrow></msub><msub><mi>G</mi><mrow><mi>r</mi><mi>e</mi><mi>a</mi><mi>d</mi><mi>e</mi><mi>r</mi></mrow></msub><msub><mi>G</mi><mrow><mi>t</mi><mi>a</mi><mi>g</mi></mrow></msub><mo stretchy="false">(</mo><mfrac><mi>λ</mi><mrow><mn>4</mn><mi>π</mi><mi>r</mi></mrow></mfrac><msup><mo stretchy="false">)</mo><mn>2</mn></msup><mtext> </mtext><msub><mi>T</mi><mi>b</mi></msub><mspace linebreak="newline"></mspace><msub><mi>P</mi><mrow><mi>R</mi><mi>X</mi><mo separator="true">,</mo><mi>r</mi><mi>e</mi><mi>a</mi><mi>d</mi><mi>e</mi><mi>r</mi></mrow></msub><mo>=</mo><msub><mi>P</mi><mrow><mi>T</mi><mi>X</mi><mo separator="true">,</mo><mi>t</mi><mi>a</mi><mi>g</mi></mrow></msub><msub><mi>G</mi><mrow><mi>t</mi><mi>a</mi><mi>g</mi></mrow></msub><msub><mi>G</mi><mrow><mi>r</mi><mi>e</mi><mi>a</mi><mi>d</mi><mi>e</mi><mi>r</mi></mrow></msub><mo stretchy="false">(</mo><mfrac><mi>λ</mi><mrow><mn>4</mn><mi>π</mi><mi>r</mi></mrow></mfrac><msup><mo stretchy="false">)</mo><mn>2</mn></msup><mspace linebreak="newline"></mspace><mtext>整理有：</mtext><msub><mi>P</mi><mrow><mi>R</mi><mi>X</mi><mo separator="true">,</mo><mi>r</mi><mi>e</mi><mi>a</mi><mi>d</mi><mi>e</mi><mi>r</mi></mrow></msub><mo>=</mo><msub><mi>P</mi><mrow><mi>T</mi><mi>X</mi><mo separator="true">,</mo><mi>r</mi><mi>e</mi><mi>a</mi><mi>d</mi><mi>e</mi><mi>r</mi></mrow></msub><msubsup><mi>G</mi><mrow><mi>r</mi><mi>e</mi><mi>a</mi><mi>d</mi><mi>e</mi><mi>r</mi></mrow><mn>2</mn></msubsup><msubsup><mi>G</mi><mrow><mi>t</mi><mi>a</mi><mi>g</mi></mrow><mn>2</mn></msubsup><msub><mi>T</mi><mi>b</mi></msub><mo stretchy="false">(</mo><mfrac><mi>λ</mi><mrow><mn>4</mn><mi>π</mi><mi>r</mi></mrow></mfrac><msup><mo stretchy="false">)</mo><mn>4</mn></msup><mspace linebreak="newline"></mspace></mrow><annotation encoding="application/x-tex">P_{TX,tag}=P_{TX,reader}G_{reader}G_{tag}({\lambda\over4\pi r})^2 \ T_b\\
+P_{RX,reader}=P_{TX,tag}G_{tag}G_{reader}({\lambda\over4\pi r})^2\\整理有：
+P_{RX,reader}=P_{TX,reader}G_{reader}^2G_{tag}^2T_b({\lambda\over4\pi r})^4\\
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.328331em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight" style="margin-right:0.07847em;">X</span><span class="mpunct mtight">,</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.05744em;vertical-align:-0.686em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight" style="margin-right:0.07847em;">X</span><span class="mpunct mtight">,</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">G</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">G</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.28055599999999997em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">t</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.37144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">4</span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">λ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace"> </span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">b</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault mtight" style="margin-right:0.07847em;">X</span><span class="mpunct mtight">,</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.05744em;vertical-align:-0.686em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.328331em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight" style="margin-right:0.07847em;">X</span><span class="mpunct mtight">,</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">G</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.28055599999999997em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">t</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">G</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.37144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">4</span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">λ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord cjk_fallback">整</span><span class="mord cjk_fallback">理</span><span class="mord cjk_fallback">有</span><span class="mord cjk_fallback">：</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault mtight" style="margin-right:0.07847em;">X</span><span class="mpunct mtight">,</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.05744em;vertical-align:-0.686em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight" style="margin-right:0.07847em;">X</span><span class="mpunct mtight">,</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">G</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-2.4530000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span></span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">G</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.864108em;"><span style="top:-2.4530000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">t</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span></span></span></span><span style="top:-3.1130000000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.383108em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">b</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.37144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">4</span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">λ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span></span><span class="mspace newline"></span></span></span></span></p>
+<p>T_b：tag解调等能量消耗</p>
+<p>P_Tx, tag：tag发送的能量</p>
+<p>推导可得前向链路距离</p>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2028.png" alt="Untitled"></p>
+<p>和反向链路距离</p>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2029.png" alt="Untitled"></p>
+<h2 id="天线极性-polarization">天线极性 「Polarization」</h2>
+<h3 id="线性极性-linear-polarization">线性极性「linear polarization」</h3>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2030.png" alt="Untitled"></p>
+<h3 id="圆极性-circularly-polarized">圆极性 「circularly polarized」</h3>
+<p>可以在某一时间点分解成两个线性极性的合</p>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2031.png" alt="Untitled"></p>
+<h3 id="极性增益功率表达式">极性增益功率表达式</h3>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mrow><mi>R</mi><mi>X</mi></mrow></msub><mo>=</mo><msub><mi>P</mi><mrow><mi>T</mi><mi>X</mi></mrow></msub><msub><mi>G</mi><mrow><mi>T</mi><mi>X</mi></mrow></msub><msub><mi>G</mi><mrow><mi>R</mi><mi>X</mi></mrow></msub><mi>c</mi><mi>o</mi><msup><mi>s</mi><mn>2</mn></msup><mo stretchy="false">(</mo><msub><mi>θ</mi><mrow><mi>p</mi><mi>o</mi><mi>l</mi><mi>a</mi><mi>r</mi></mrow></msub><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mfrac><mi>λ</mi><mrow><mn>4</mn><mi>π</mi><mi>r</mi></mrow></mfrac><msup><mo stretchy="false">)</mo><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">P_{RX}=P_{TX}G_{TX}G_{RX}cos^2(\theta_{polar})({\lambda\over4\pi r})^2
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault mtight" style="margin-right:0.07847em;">X</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.05744em;vertical-align:-0.686em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight" style="margin-right:0.07847em;">X</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">G</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight" style="margin-right:0.07847em;">X</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">G</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault mtight" style="margin-right:0.07847em;">X</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault">c</span><span class="mord mathdefault">o</span><span class="mord"><span class="mord mathdefault">s</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">p</span><span class="mord mathdefault mtight">o</span><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mopen">(</span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.37144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">4</span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">λ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span></p>
+<h3 id="双偶极子天线-double-dipole-antenna">双偶极子天线 「Double dipole antenna」</h3>
+<p>两个正交天线组成，避免某一极性信号不好</p>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2032.png" alt="Untitled"></p>
+<h3 id="多路效应-multipath-effect">多路效应 「multipath effect」</h3>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2033.png" alt="Untitled"></p>
+<p>反射的信号与直接传递的信号叠加干扰（相位改变），路径相差波长1/4 相位相差90度。</p>
+<p>反射的信号能量为原信号1/10，理论上可以计算出上图tag接收的能量</p>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2034.png" alt="Untitled"></p>
+<p>这里取两个极端例子证明反射信号干扰对信号能量的不确定性，分别取全同相和全反相</p>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2035.png" alt="Untitled"></p>
+<h3 id="布鲁斯特角">布鲁斯特角</h3>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2036.png" alt="Untitled"></p>
+<hr>
+<h1 id="ch5-校验-编码与调制-checksum-coding-modulation">CH5 校验、编码与调制「Checksum Coding Modulation」</h1>
+<blockquote>
+<p>写前面：校验、编码与调制可以看作是rfid系统为了确保可靠传输在不同层面上的技术，三个技术分别表示了从抽象层到物理层（message→baseband→high frequency signal）的可靠传输技术。校验从字（节）的角度实现错误的识别和纠正，主要讲了奇偶校验、LRC和CRC；编码是从计算机上层的字（节）的概念到底层电路逻辑的表示方法，例如最简单的0/1，其中又依照rfid系统的限制提出了不同的优化方式；调制（数字调制）将数字逻辑卷积到高频载波信号上，在传播媒介上提供更好的抗干扰性能和更远的传播距离。</p>
+</blockquote>
+<h2 id="checksum">Checksum</h2>
+<h3 id="奇偶校验">奇偶校验</h3>
+<p>例如对于8bit字，添加1bit校验位，奇校验连通校验位1有奇数个，偶校验相反</p>
+<p>问题：假如两位出现error则无法检出</p>
+<h3 id="lrc-longitudinal-redundancy-check-纵向冗余检查">LRC「Longitudinal redundancy check 纵向冗余检查」</h3>
+<p>纵向，指纵向XOR若干个字</p>
+<p>例如（41为LRC结果）</p>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2037.png" alt="Untitled"></p>
+<p>作为块计算，Primarily used for the rapid checking of very small data blocks</p>
+<p>和上面一样，error会抵消</p>
+<h3 id="crc-cyclic-redundancy-check-循环冗余检查">CRC「<strong>cyclic redundancy check 循环冗余检查</strong>」</h3>
+<p>CRC有生成多项式，例如4bit-CRC的生成式是x4 + x + 1</p>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2038.png" alt="Untitled"></p>
+<hr>
+<h1 id="ch6-tag识别协议">CH6 Tag识别协议</h1>
+<blockquote>
+<p>写前面：这一章里的识别协议主要指的是多个tag同时通信时发生的信号干扰（碰撞）问题，主要讲了一些防碰撞协议，有点类似于计算机网络MAC层的防碰撞（Aloha）协议，但是由于tag的计算能力有限，没有办法去执行类似于CSMA（载波监听多路存取）这种需要client去主动感知的复杂协议。</p>
+</blockquote>
+<h2 id="信号干扰-interference">信号干扰（Interference）</h2>
+<p>两种：多个reader之间的干扰和多个tag之间的干扰</p>
+<p>Reader之间的干扰采用大致3种方式解决（Reader计算能力相对充沛，参考计算机网络）</p>
+<ol>
+<li>TDMA 时分复用</li>
+<li>FDMA 频分复用</li>
+<li>CSMA 载波监听多路存取</li>
+</ol>
+<p>Tag之间干扰后面详述</p>
+<h2 id="通讯类型">通讯类型</h2>
+<ul>
+<li>广播</li>
+</ul>
+<p>一般是reader到tag 「注：transponder 就是 tag」</p>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2039.png" alt="Untitled"></p>
+<ul>
+<li>多路存取</li>
+</ul>
+<p>多个tag到reader</p>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2040.png" alt="Untitled"></p>
+<h2 id="tag防碰撞算法">Tag防碰撞算法</h2>
+<h3 id="概述">概述</h3>
+<ul>
+<li>Space division multiple access (SDMA)</li>
+<li>Frequency division multiple access (FDMA)</li>
+<li>Time division multiple access (TDMA)</li>
+<li>Code division multiple access (CDMA)</li>
+</ul>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2041.png" alt="Untitled"></p>
+<p>「注：没有CSMA了，理由见上。增加了SDMA，理由见下」</p>
+<h3 id="sdma-空分复用">SDMA 空分复用</h3>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2042.png" alt="Untitled"></p>
+<p>两种实现途径：</p>
+<ol>
+<li>减小reader天线覆盖范围，并配置多个reader</li>
+<li>使用定向「directional」天线「antenna」（如上图）</li>
+</ol>
+<p><strong>Disadvantage:</strong></p>
+<p>relatively ****high implementation cost of complicated antenna system</p>
+<p><strong>Restricted to a few specialized applications</strong></p>
+<h3 id="fdma-频分复用">FDMA 频分复用</h3>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2043.png" alt="Untitled"></p>
+<p>在FDMA过程中，提供多个频率信道可用于从转发器到读取器的数据传输</p>
+<p><strong>Disadvantage:</strong></p>
+<p>relatively ****high cost of readers</p>
+<p><strong>Limited to a few specialized applications</strong></p>
+<h3 id="tdma-时分复用">TDMA 时分复用</h3>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2044.png" alt="Untitled"></p>
+<ul>
+<li>Compared with the reader, limited by hardware resources, tags have very limited storage capacity and computing.</li>
+<li>That’s why the tag does not have a collision detection function, and the tags can not communicate with each other.</li>
+<li>All conflict detection needs to be done with the help of the reader.</li>
+<li><strong>TDMA</strong> can be used to detect conflicts among RFID tags from the point of view of system complexity and cost.</li>
+</ul>
+<blockquote>
+<p>关于是tag-driven还是reader-driven：看由谁决定<strong>发送消息的时间<br>
+例如</strong> 在Aloha中，无论是否有reader发起，tag可以自主选择SN来决定自己发送的时间<br>
+同理 在BT中，Tag自主选择+1 或 +0<br>
+而在 QT中，Reader来对tag进行查询，指定tag对发送顺序</p>
+</blockquote>
+<p>通常，tag-driven需要tag有寄存（计数）器</p>
+<blockquote></blockquote>
+<h2 id="aloha-based">ALOHA- based</h2>
+<p>ALOHA提供回退机制「rollback」，即发生碰撞则重新发送。</p>
+<p>实现简单且公平「simple and fair」</p>
+<h3 id="pure-aloha">Pure ALOHA</h3>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2045.png" alt="Untitled"></p>
+<p>reader接受到无干扰到包后会广播一个ACK，也就是说tag发包后没有收到ACK就证明包冲突了，随后重发。</p>
+<p><strong>纯ALOHA算法效率低，信道利用率约18.4%</strong></p>
+<p>证明：</p>
+<p><strong>Offered load</strong> G ****：同一个时间段tao中有多少个tag在发送</p>
+<p><strong>Throughput</strong> s：信道吞吐量，对于reader来说，s=1成功收包，s=0发生碰撞</p>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2046.png" alt="Untitled"></p>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2047.png" alt="Untitled"></p>
+<blockquote>
+<p>这段概率论真tm看不懂</p>
+</blockquote>
+<h3 id="slotted-aloha">Slotted- ALOHA</h3>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2048.png" alt="Untitled"></p>
+<p>把时间分成间隙，tag只能在slot开始时发包（相当于同步了，不会出现发包的中间发生干扰的情况）</p>
+<p><strong>信道利用率maximum of 36.8%: offered load <em>G</em>=1</strong></p>
+<p>这个简单说一下，虽然说前面概率论看不懂一点，但是前面假设了一个包不发生冲突的条件是2个tao时间（红框）内没有其他tag发包</p>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2049.png" alt="Untitled"></p>
+<p>而同步slot后只需要保证同一个slot内没有tag发包（1个tao）所以效率直接x2=36.8%</p>
+<p><strong>时隙ALOHA工作流程</strong></p>
+<p>三个指令（阶段）</p>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2050.png" alt="Untitled"></p>
+<p>防碰撞发生在Request和Select中间</p>
+<p>流程：</p>
+<ol>
+<li>Reader广播Request命令</li>
+<li>tag收到命令后随机选择一个slot发送自己的SN</li>
+<li>没有冲突的tag被选为下面通讯的tag</li>
+</ol>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2051.png" alt="Untitled"></p>
+<h3 id="frame-slotted-aloha-fsa-固定帧时隙aloha">Frame Slotted ALOHA「FSA 固定帧时隙ALOHA」</h3>
+<p>基于前文S- ALOHA，将多个slot组织成一个frame</p>
+<p><strong>工作流程：</strong></p>
+<ol>
+<li>Reader广播frame length</li>
+<li>tag在frame length中随机选取一个SN（保存到寄存器）</li>
+<li>每一个slot中SN为0的tag立即与reader进行通讯，其他tag将SN-1</li>
+<li>发送成功的tag进行休眠</li>
+</ol>
+<p><strong>分析：</strong></p>
+<p>三种slot状态：</p>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2052.png" alt="Untitled"></p>
+<p><strong>FSA是RFID系统中最常用的ALOHA算法</strong></p>
+<p><strong>性能分析：</strong></p>
+<p>FSA采用固定帧长，帧大小决定性能</p>
+<p>帧过大：Idle slot过多</p>
+<p>帧过小：Conflict slot过多</p>
+<p>帧大小=tag数量时，性能最优，信道利用率36.8%（也就是前文的G=1，每个slot有1个tag）</p>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2053.png" alt="Untitled"></p>
+<h3 id="dynamic-frame-slotted-aloha-dfsa-动态帧时隙aloha">Dynamic Frame Slotted ALOHA「DFSA 动态帧时隙ALOHA」</h3>
+<p>思想：学习前一帧来估计tag数量</p>
+<p><strong>EPCglobalGen2</strong> 标准中采用的 <strong>Q算法</strong></p>
+<p>冲突帧过多 → 结束，启动一个更大的帧</p>
+<p>闲置帧过多 → 结束，启动一个更小的帧</p>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2054.png" alt="Untitled"></p>
+<p>帧长 =（2^Q）-1</p>
+<h3 id="aloha方法总结">ALOHA方法总结</h3>
+<p>实现简单，公平</p>
+<p>可能有tag会starvation</p>
+<h2 id="binary-tree-based">Binary Tree Based</h2>
+<p>思想：发生冲突时把tag分为两个子集，让1个子集先沉默，如果还冲突就继续分直到一个子集只有一个tag</p>
+<p>分类：</p>
+<ul>
+<li>BT树  属于Tag-driven</li>
+<li>QT树  属于Reader-driven</li>
+</ul>
+<h3 id="random-binary-tree-bt-随机二进制树-tag-driven">Random binary tree 「BT 随机二进制树」TAG-driven</h3>
+<p>每个tag保留一个计数器（counter）初始值为0</p>
+<p>发生冲突后，每个tag随机选择+1或+0</p>
+<p>成功接受后，该tag休眠，其他tag-1</p>
+<p>出现闲置帧所有tag-1</p>
+<p>【关注最左枝，右枝暂时搁置（自动+1）】</p>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2055.png" alt="Untitled"></p>
+<p>过程「内为假设随机事件」：</p>
+<ul>
+<li>reader广播REQUEST，tag计数器置0</li>
+<li>slot0 时【1234】发送，冲突。「tag3 +1」</li>
+<li>slot1 时【124】发送，冲突。「tag1 tag4 +1」</li>
+<li>slot2 时【2】发送，成功。【2】休眠，所有tag -1</li>
+<li>slot3 时【14】发送，冲突。「tag4 +1」</li>
+<li>slot4 时【1】发送，成功。【1】休眠，所有tag -1</li>
+<li>slot5 时【4】发送，成功。【4】休眠，所有tag -1</li>
+<li>slot6 时【3】发送，成功。</li>
+</ul>
+<h3 id="binary-query-tree-qt-二进制查找书-reader-driven">Binary Query Tree 「QT 二进制查找书」READER-driven</h3>
+<p>与BT不同，QT为无状态「stateless」协议，也就是说QT中tag不保存状态</p>
+<p>tag含有自己的UID，让Reader进行「前缀」查找（筛选），直到筛选条件只会有一个tag（无冲突）。</p>
+<p>性能与UID长度（树的深度）有关</p>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2056.png" alt="Untitled"></p>
+<h2 id="binary-search-based">Binary Search Based</h2>
+<p>思想：找到发生冲突的比特位，加速算法（可以跳过没有发生冲突的位，想象上面的树）</p>
+<h3 id="nrz和manchester编码对于冲突发生的感知">NRZ和Manchester编码对于冲突发生的感知</h3>
+<p>先解释一下这个图，第一行是tag1的发送信号，第二行是tag2的发送信号，第三行是调制后的（发送中的、reader接收的）信号，第四行是reader解调的信号</p>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2057.png" alt="Untitled"></p>
+<p>发现使用Manchester编码会找到发生冲突的位（无法解码）</p>
+<h3 id="binary-search">Binary Search</h3>
+<p>Request：指定一个sn范围</p>
+<p>Select：指定id的tag回复信息</p>
+<p>过程：</p>
+<p>8bit二进制序列号（0-255）</p>
+<p>第一轮全选tag（小于255），通过接受数据可知冲突位</p>
+<p>bit6有冲突，证明至少有一个tag的sn≤10111111</p>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2058.png" alt="Untitled"></p>
+<p>总体看，两种查询模式</p>
+<p>使用 ≥模式首次查询0，之后最高冲突位置1，0位置冲突位后置0</p>
+<p>≤模式同理</p>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2059.png" alt="Untitled"></p>
+<p>性能：</p>
+<p>查询次数 = log2(N)+1，N = tag个数</p>
+<h3 id="dynamic-binary-search">Dynamic Binary Search</h3>
+<p>思想：</p>
+<p>在上面的过程中，请求指令尾端全是1，没有必要发送给tag；tag的回复头段一定满足reader要求（reader已经知道），没必要发送。所以想办法将2x的传送量优化为1x，减少冗余字段。</p>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2060.png" alt="Untitled"></p>
+<p>优化后的上例</p>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2061.png" alt="Untitled"></p>
+<h2 id="比较aloha和binary-tree">比较ALOHA和Binary Tree</h2>
+<p>ALOHA：</p>
+<p>优点：</p>
+<ul>
+<li>简单</li>
+<li>性能好</li>
+<li>结果可以统计分析</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>存在starvation</li>
+<li>最坏情况延迟趋于无穷</li>
+</ul>
+<p>Binary Tree：</p>
+<p>优点：</p>
+<ul>
+<li>简单</li>
+<li>不需要存储状态</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>ID分布不均时效能不好</li>
+</ul>
+<p><img src="https://blog-images-qianmmo.oss-cn-beijing.aliyuncs.com/rfid/Untitled%2062.png" alt="Untitled"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://blog.qianmmo.top">Qianmoxsn</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://blog.qianmmo.top/2024/04/02/rfid/">https://blog.qianmmo.top/2024/04/02/rfid/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://blog.qianmmo.top" target="_blank">Qianmoxsn的主页</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://asset.qianmmo.top/cover/rfid.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/04/05/freessl/" title="获取免费的、自动续期的、泛域名的证书"><img class="cover" src="https://asset.qianmmo.top/cover/ssl.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">获取免费的、自动续期的、泛域名的证书</div></div></a></div><div class="next-post pull-right"><a href="/2024/04/01/displayswitch/" title="如何优雅的进行显示器的输入源切换"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">如何优雅的进行显示器的输入源切换</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://dsm04pap003files.storage.live.com/y4mGzUo85ZsNCIPi7C2wm8sh0yAQNRuHs0dcx535PNkgi1KQ3n2mUAo04_v69gI1Pkw7JSYZF15cmW00wkgtFVnz-voluy-7UI3wZVFtcROhp9_6A93gaa6v1o6B6qkNmHMGGmccJ1vhaLLDbofdPF-tzT81LTVLhuqev7CtUTpz5mSkqUbB48TVu5gWJ6AwAWt?width=959&amp;height=959&amp;cropmode=none" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Qianmoxsn</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">34</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">30</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Qianmoxsn"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">CV一时爽，期末火葬场</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#rfid-%E6%97%A0%E7%BA%BF%E5%B0%84%E9%A2%91%E8%AF%86%E5%88%AB"><span class="toc-number">1.</span> <span class="toc-text">RFID 无线射频识别</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ch1-ch2-rfid%E6%8A%80%E6%9C%AF%E6%A6%82%E8%A7%88"><span class="toc-number">2.</span> <span class="toc-text">CH1&amp;CH2 RFID技术概览</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#definition-and-scope-of-rfid"><span class="toc-number">2.1.</span> <span class="toc-text">Definition and scope of RFID</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#automatic-identification-technology-%E8%87%AA%E5%8A%A8%E8%AF%86%E5%88%AB%E6%8A%80%E6%9C%AF"><span class="toc-number">2.2.</span> <span class="toc-text">Automatic identification technology「自动识别技术」</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#main-features-of-rfid"><span class="toc-number">2.3.</span> <span class="toc-text">Main features of RFID</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#constraints-of-rfid"><span class="toc-number">2.4.</span> <span class="toc-text">Constraints of RFID</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ch3-rfid%E7%B3%BB%E7%BB%9F%E7%BB%84%E6%88%90"><span class="toc-number">3.</span> <span class="toc-text">CH3 RFID系统组成</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#reader"><span class="toc-number">3.1.</span> <span class="toc-text">Reader</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD"><span class="toc-number">3.1.1.</span> <span class="toc-text">功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E9%A2%91%E7%8E%87"><span class="toc-number">3.1.2.</span> <span class="toc-text">工作频率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%96%E8%A7%82"><span class="toc-number">3.1.3.</span> <span class="toc-text">外观</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%86%99%E8%B7%9D%E7%A6%BB"><span class="toc-number">3.1.4.</span> <span class="toc-text">读写距离</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#component"><span class="toc-number">3.1.5.</span> <span class="toc-text">component</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tag"><span class="toc-number">3.2.</span> <span class="toc-text">Tag</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD"><span class="toc-number">3.2.1.</span> <span class="toc-text">功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%96%E8%A7%82"><span class="toc-number">3.2.2.</span> <span class="toc-text">外观</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%86%99%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.2.3.</span> <span class="toc-text">读写模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%83%BD%E9%87%8F%E6%BA%90"><span class="toc-number">3.2.4.</span> <span class="toc-text">能量源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#component"><span class="toc-number">3.2.5.</span> <span class="toc-text">component</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%94%A4%E9%86%92%E7%94%B5%E8%B7%AF"><span class="toc-number">3.2.6.</span> <span class="toc-text">唤醒电路</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ch4-%E6%97%A0%E7%BA%BF%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86"><span class="toc-number">4.</span> <span class="toc-text">CH4 无线通信原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%B5%E7%A3%81%E5%9C%BA%E7%90%86%E8%AE%BA"><span class="toc-number">4.1.</span> <span class="toc-text">电磁场理论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#radio%E9%A2%91%E8%B0%B1"><span class="toc-number">4.2.</span> <span class="toc-text">Radio频谱</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#db-dbm-dbi-dbd"><span class="toc-number">4.3.</span> <span class="toc-text">dB，dBm，dBi，dBd</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%83%E5%88%B6"><span class="toc-number">4.4.</span> <span class="toc-text">调制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%93%BE%E8%B7%AF-%E8%83%BD%E9%87%8F-%E9%A2%84%E7%AE%97-link-budget"><span class="toc-number">4.5.</span> <span class="toc-text">链路（能量）预算「Link Budget」</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#path-loss"><span class="toc-number">4.5.1.</span> <span class="toc-text">Path Loss</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%A9%E7%BA%BF-antenna"><span class="toc-number">4.6.</span> <span class="toc-text">天线「Antenna」</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E5%90%91%E5%A4%A9%E7%BA%BF%E5%A2%9E%E7%9B%8A"><span class="toc-number">4.6.1.</span> <span class="toc-text">定向天线增益</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%81%B6%E6%9E%81%E5%AD%90%E5%A4%A9%E7%BA%BF%E5%A2%9E%E7%9B%8A"><span class="toc-number">4.6.2.</span> <span class="toc-text">偶极子天线增益</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AD%89%E6%95%88%E5%85%A8%E5%90%91%E8%BE%90%E5%B0%84%E5%8A%9F%E7%8E%87-eirp-equivalent-isotropic-radiated-power"><span class="toc-number">4.6.3.</span> <span class="toc-text">等效全向辐射功率「EIRP Equivalent Isotropic Radiated Power」</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A2%9E%E7%9B%8A%E9%93%BE%E8%B7%AF%E9%A2%84%E7%AE%97-%E8%B7%9F%E4%B8%8A%E9%9D%A2%E9%82%A3%E4%B8%AA%E4%B8%80%E6%A0%B7%E5%B0%B1%E6%98%AF%E7%AE%97%E4%BA%86%E5%A2%9E%E7%9B%8A"><span class="toc-number">4.7.</span> <span class="toc-text">增益链路预算（跟上面那个一样就是算了增益）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%A9%E7%BA%BF%E6%9E%81%E6%80%A7-polarization"><span class="toc-number">4.8.</span> <span class="toc-text">天线极性 「Polarization」</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E6%9E%81%E6%80%A7-linear-polarization"><span class="toc-number">4.8.1.</span> <span class="toc-text">线性极性「linear polarization」</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%86%E6%9E%81%E6%80%A7-circularly-polarized"><span class="toc-number">4.8.2.</span> <span class="toc-text">圆极性 「circularly polarized」</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%81%E6%80%A7%E5%A2%9E%E7%9B%8A%E5%8A%9F%E7%8E%87%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">4.8.3.</span> <span class="toc-text">极性增益功率表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8C%E5%81%B6%E6%9E%81%E5%AD%90%E5%A4%A9%E7%BA%BF-double-dipole-antenna"><span class="toc-number">4.8.4.</span> <span class="toc-text">双偶极子天线 「Double dipole antenna」</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E8%B7%AF%E6%95%88%E5%BA%94-multipath-effect"><span class="toc-number">4.8.5.</span> <span class="toc-text">多路效应 「multipath effect」</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%83%E9%B2%81%E6%96%AF%E7%89%B9%E8%A7%92"><span class="toc-number">4.8.6.</span> <span class="toc-text">布鲁斯特角</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ch5-%E6%A0%A1%E9%AA%8C-%E7%BC%96%E7%A0%81%E4%B8%8E%E8%B0%83%E5%88%B6-checksum-coding-modulation"><span class="toc-number">5.</span> <span class="toc-text">CH5 校验、编码与调制「Checksum Coding Modulation」</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#checksum"><span class="toc-number">5.1.</span> <span class="toc-text">Checksum</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A5%87%E5%81%B6%E6%A0%A1%E9%AA%8C"><span class="toc-number">5.1.1.</span> <span class="toc-text">奇偶校验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lrc-longitudinal-redundancy-check-%E7%BA%B5%E5%90%91%E5%86%97%E4%BD%99%E6%A3%80%E6%9F%A5"><span class="toc-number">5.1.2.</span> <span class="toc-text">LRC「Longitudinal redundancy check 纵向冗余检查」</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#crc-cyclic-redundancy-check-%E5%BE%AA%E7%8E%AF%E5%86%97%E4%BD%99%E6%A3%80%E6%9F%A5"><span class="toc-number">5.1.3.</span> <span class="toc-text">CRC「cyclic redundancy check 循环冗余检查」</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ch6-tag%E8%AF%86%E5%88%AB%E5%8D%8F%E8%AE%AE"><span class="toc-number">6.</span> <span class="toc-text">CH6 Tag识别协议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%A1%E5%8F%B7%E5%B9%B2%E6%89%B0-interference"><span class="toc-number">6.1.</span> <span class="toc-text">信号干扰（Interference）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%AE%AF%E7%B1%BB%E5%9E%8B"><span class="toc-number">6.2.</span> <span class="toc-text">通讯类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tag%E9%98%B2%E7%A2%B0%E6%92%9E%E7%AE%97%E6%B3%95"><span class="toc-number">6.3.</span> <span class="toc-text">Tag防碰撞算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">6.3.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sdma-%E7%A9%BA%E5%88%86%E5%A4%8D%E7%94%A8"><span class="toc-number">6.3.2.</span> <span class="toc-text">SDMA 空分复用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fdma-%E9%A2%91%E5%88%86%E5%A4%8D%E7%94%A8"><span class="toc-number">6.3.3.</span> <span class="toc-text">FDMA 频分复用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tdma-%E6%97%B6%E5%88%86%E5%A4%8D%E7%94%A8"><span class="toc-number">6.3.4.</span> <span class="toc-text">TDMA 时分复用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#aloha-based"><span class="toc-number">6.4.</span> <span class="toc-text">ALOHA- based</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#pure-aloha"><span class="toc-number">6.4.1.</span> <span class="toc-text">Pure ALOHA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#slotted-aloha"><span class="toc-number">6.4.2.</span> <span class="toc-text">Slotted- ALOHA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#frame-slotted-aloha-fsa-%E5%9B%BA%E5%AE%9A%E5%B8%A7%E6%97%B6%E9%9A%99aloha"><span class="toc-number">6.4.3.</span> <span class="toc-text">Frame Slotted ALOHA「FSA 固定帧时隙ALOHA」</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dynamic-frame-slotted-aloha-dfsa-%E5%8A%A8%E6%80%81%E5%B8%A7%E6%97%B6%E9%9A%99aloha"><span class="toc-number">6.4.4.</span> <span class="toc-text">Dynamic Frame Slotted ALOHA「DFSA 动态帧时隙ALOHA」</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#aloha%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93"><span class="toc-number">6.4.5.</span> <span class="toc-text">ALOHA方法总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#binary-tree-based"><span class="toc-number">6.5.</span> <span class="toc-text">Binary Tree Based</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#random-binary-tree-bt-%E9%9A%8F%E6%9C%BA%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%A0%91-tag-driven"><span class="toc-number">6.5.1.</span> <span class="toc-text">Random binary tree 「BT 随机二进制树」TAG-driven</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#binary-query-tree-qt-%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%9F%A5%E6%89%BE%E4%B9%A6-reader-driven"><span class="toc-number">6.5.2.</span> <span class="toc-text">Binary Query Tree 「QT 二进制查找书」READER-driven</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#binary-search-based"><span class="toc-number">6.6.</span> <span class="toc-text">Binary Search Based</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#nrz%E5%92%8Cmanchester%E7%BC%96%E7%A0%81%E5%AF%B9%E4%BA%8E%E5%86%B2%E7%AA%81%E5%8F%91%E7%94%9F%E7%9A%84%E6%84%9F%E7%9F%A5"><span class="toc-number">6.6.1.</span> <span class="toc-text">NRZ和Manchester编码对于冲突发生的感知</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#binary-search"><span class="toc-number">6.6.2.</span> <span class="toc-text">Binary Search</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dynamic-binary-search"><span class="toc-number">6.6.3.</span> <span class="toc-text">Dynamic Binary Search</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AF%94%E8%BE%83aloha%E5%92%8Cbinary-tree"><span class="toc-number">6.7.</span> <span class="toc-text">比较ALOHA和Binary Tree</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/04/05/freessl/" title="获取免费的、自动续期的、泛域名的证书"><img src="https://asset.qianmmo.top/cover/ssl.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="获取免费的、自动续期的、泛域名的证书"/></a><div class="content"><a class="title" href="/2024/04/05/freessl/" title="获取免费的、自动续期的、泛域名的证书">获取免费的、自动续期的、泛域名的证书</a><time datetime="2024-04-05T02:00:00.000Z" title="发表于 2024-04-05 10:00:00">2024-04-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/04/02/rfid/" title="RFID 无线射频识别"><img src="https://asset.qianmmo.top/cover/rfid.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="RFID 无线射频识别"/></a><div class="content"><a class="title" href="/2024/04/02/rfid/" title="RFID 无线射频识别">RFID 无线射频识别</a><time datetime="2024-04-02T02:00:00.000Z" title="发表于 2024-04-02 10:00:00">2024-04-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/04/01/displayswitch/" title="如何优雅的进行显示器的输入源切换">如何优雅的进行显示器的输入源切换</a><time datetime="2024-04-01T02:00:00.000Z" title="发表于 2024-04-01 10:00:00">2024-04-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/21/installclash/" title="小猫咪安装(Linux)"><img src="https://asset.qianmmo.top/cover/clash.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="小猫咪安装(Linux)"/></a><div class="content"><a class="title" href="/2024/03/21/installclash/" title="小猫咪安装(Linux)">小猫咪安装(Linux)</a><time datetime="2024-03-21T12:00:00.000Z" title="发表于 2024-03-21 20:00:00">2024-03-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/14/oop-py/" title="面向对象程序设计思维（Python）"><img src="https://asset.qianmmo.top/cover/*.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="面向对象程序设计思维（Python）"/></a><div class="content"><a class="title" href="/2024/03/14/oop-py/" title="面向对象程序设计思维（Python）">面向对象程序设计思维（Python）</a><time datetime="2024-03-14T12:00:00.000Z" title="发表于 2024-03-14 20:00:00">2024-03-14</time></div></div></div></div></div></div></main><footer id="footer" style="background: #758d664d"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2024 By Qianmoxsn</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="icp"><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/"><span>京ICP备2024047404号-1</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.12.0"></script><script src="/js/main.js?v=4.12.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.32/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
